@@ -80,16 +80,25 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="title">{{ 'Geo Code' }} <span
+                                                    <label for="title">{{ 'Country Code' }} <span
                                                             style="color:red;"></span></label>
-                                                    <input type="text" name="geo_code" class="form-control"
-                                                        value="{{ old('geo_code') }}" placeholder="eg. AUS">
-                                                    @if($errors->has('geo_code'))
+                                                    <input type="text" name="country_code" class="form-control"
+                                                        value="{{ old('country_code') }}" placeholder="eg. AUS">
+                                                    @if($errors->has('country_code'))
                                                     <em class="invalid-feedback">
-                                                        {{ $errors->first('geo_code') }}
+                                                        {{ $errors->first('country_code') }}
                                                     </em>
                                                     @endif
                                                 </div>
+                                            </div>
+                                            <div class="col-12" style="margin-top:30px;">
+                                                <label for="bounding_box">Geometry</label>
+                                                <textarea class="form-control" id="geometry" name="geometry"
+                                                    rows="4">{{ old('geometry') }}</textarea>
+                                                <small class="form-text text-muted">Enter the geometry in JSON format.
+                                                    <br>Example:"MultiPolygon (((74.91574100000005387
+                                                    37.23732800000000509, 74.39221200000005751 37.17507200000007117,
+                                                    74.56543000000007737 ,...)))" </small>
                                             </div>
                                         </div>
 
@@ -133,18 +142,6 @@
                                                     in JSON format. <br>Example: {"min_latitude":
                                                     40.477399,"min_longitude": -74.259090,"max_latitude":
                                                     40.917577,"max_longitude": -73.700272}</small>
-                                            </div>
-
-                                            <div class="col-12" style="margin-top:30px;">
-                                                <label for="population">Population</label>
-                                                <input type="number" class="form-control" id="population"
-                                                    name="population" value="{{ old('population') }}" required>
-                                            </div>
-
-                                            <div class="col-12" style="margin-top:30px;">
-                                                <label for="area_size">Area Size</label>
-                                                <input type="text" class="form-control" id="area_size" name="area_size"
-                                                    value="{{ old('area_size') }}" required>
                                             </div>
                                         </div>
                                     </div>

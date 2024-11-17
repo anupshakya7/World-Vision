@@ -1,0 +1,39 @@
+
+.fade-enter-active[data-v-82d33a46],
+.fade-leave-active[data-v-82d33a46] {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from[data-v-82d33a46],
+.fade-leave-to[data-v-82d33a46] {
+  opacity: 0;
+}
+
+ @media only screen and (max-width: 800px) {
+.eQBQgv g.features{display: none !important;}
+.eQBQgv{display: none !important;}
+.cyJYod {
+  top: 20px !important;
+  right: 0px !important;
+  width: 100% !important;;
+  }
+  .dUDIUl {      
+      top: 140px;    
+  }
+  .iDaRoj{display: none !important;}
+  .faUwHd {
+    left: 4% !important;;
+    width: 92% !important;
+}
+.iDaRoj{display: none !important;}
+ }
+
+
+ @media only screen and (max-width: 640px) {
+.duobTX{padding: 33px 7px !important;}
+
+}
+
+@media only screen and (max-width: 480px) {
+.jChDEx{font-size: 12px !important;}
+.jbpZYL{margin: 0px 4px !important; line-height: 30px !important; }
+}

@@ -1,5 +1,5 @@
 @extends('admin.dashboard.layout.web')
-@section('title','Country Create')
+@section('title','Country Update')
 @section('content')
 <style>
     .error {
@@ -36,7 +36,7 @@
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">World Vision</a></li>
                                 <li class="breadcrumb-item"><a href="{{route('admin.country.index')}}">Country</a></li>
-                                <li class="breadcrumb-item active">{{ 'Create Country'}}</li>
+                                <li class="breadcrumb-item active">{{ 'Update Country'}}</li>
                             </ol>
                         </div>
 
@@ -48,9 +48,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{ 'Add Country' }}</h5>
+                            <h5 class="card-title mb-0">{{ 'Update Country' }}</h5>
                         </div>
-
                         <div class="card-body">
                             @if ($errors->any())
                             <div class="alert alert-danger">
@@ -61,8 +60,9 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('admin.country.store') }}" method="POST">
+                            <form action="{{ route('admin.country.update',$country) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
@@ -71,7 +71,7 @@
                                                     <label for="title">{{ 'Title' }} <span
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="country" class="form-control"
-                                                        value="{{ old('country') }}">
+                                                        value="{{ old('country',$country->country) }}">
                                                     @if($errors->has('country'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('country') }}
@@ -84,8 +84,8 @@
                                                     <label for="title">{{ 'Country Code' }} <span
                                                             style="color:red;"></span></label>
                                                     <input type="text" name="country_code" class="form-control"
-                                                        value="{{ old('country_code') }}" maxlength="3"
-                                                        placeholder="eg. AUS">
+                                                        value="{{ old('country_code',$country->country_code) }}"
+                                                        maxlength="3" placeholder="eg. AUS">
                                                     @if($errors->has('country_code'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('country_code') }}
@@ -96,7 +96,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <label for="bounding_box">Geometry</label>
                                                 <textarea class="form-control" id="geometry" name="geometry"
-                                                    rows="4">{{ old('geometry') }}</textarea>
+                                                    rows="4">{{ old('geometry',$country->geometry) }}</textarea>
                                                 <small class="form-text text-muted">Enter the geometry in JSON format.
                                                     <br>Example:"MultiPolygon (((74.91574100000005387
                                                     37.23732800000000509, 74.39221200000005751 37.17507200000007117,
@@ -114,7 +114,8 @@
                                                     name="parent_id">
                                                     <option value="">None</option>
                                                     @foreach ($regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->country }}</option>
+                                                    <option value="{{ $region->id }}" {{$country->parent_id ==
+                                                        $region->id ? 'selected':''}}>{{ $region->country }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -122,19 +123,19 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <label for="latitude">Latitude</label>
                                                 <input type="text" class="form-control" id="latitude" name="latitude"
-                                                    value="{{ old('latitude') }}">
+                                                    value="{{ old('latitude',$country->latitude) }}">
                                             </div>
 
                                             <div class="col-12" style="margin-top:30px;">
                                                 <label for="longitude">Longitude</label>
                                                 <input type="text" class="form-control" id="longitude" name="longitude"
-                                                    value="{{ old('longitude') }}">
+                                                    value="{{ old('longitude',$country->longitude) }}">
                                             </div>
 
                                             <div class="col-12" style="margin-top:20px;">
                                                 <label for="bounding_box">Bounding Box (JSON)</label>
                                                 <textarea class="form-control" id="bounding_box" name="bounding_box"
-                                                    rows="4">{{ old('bounding_box') }}</textarea>
+                                                    rows="4">{{ old('bounding_box',$country->bounding_box) }}</textarea>
                                                 <small class="form-text text-muted">Enter the bounding box coordinates
                                                     in JSON format. <br>Example: {"min_latitude":
                                                     40.477399,"min_longitude": -74.259090,"max_latitude":
@@ -149,7 +150,7 @@
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">
-                                        <i class="ri-save-line"></i> Save
+                                        <i class="ri-save-line"></i> Update
                                     </button>
                                 </div>
                             </form>

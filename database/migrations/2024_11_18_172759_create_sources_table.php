@@ -12,19 +12,20 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('sources', function (Blueprint $table) {
             $table->id();
-            $table->string('country');
-            $table->string('country_code')->nullable();
-            $table->integer('parent_id')->nullable();
-            $table->double('latitude')->nullable();
-            $table->double('longitude')->nullable();
-            $table->longText('bounding_box')->nullable();
-            $table->longText('geometry')->nullable();
-            $table->integer('level');
+            $table->unsignedBigInteger('indicator_id');
+            $table->string('source')->nullable();
+            $table->integer('data_level')->nullable();
+            $table->integer('impid');
+            $table->string('units')->nullable();
+            $table->text('description')->nullable();
+            $table->text('url')->nullable();
+            $table->text('link')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
 
+            $table->foreign('indicator_id')->references('id')->on('indicators')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -36,6 +37,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('sources');
     }
 };

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Country\CountryRequest;
+use App\Models\Admin\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CountryController extends Controller
 {
@@ -14,7 +17,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.country.index');
+        $countries = Country::with('user')->paginate(10);
+        return view('admin.dashboard.country.index', compact('countries'));
     }
 
     /**
@@ -24,7 +28,9 @@ class CountryController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.country.create');
+        $regions = Country::select('id', 'country')->where('level', 0)->get();
+
+        return view('admin.dashboard.country.create', compact('regions'));
     }
 
     /**
@@ -35,7 +41,32 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'country' => 'required|string|max:255',
+            'country_code' => 'nullable|string|max:3',
+            'geometry' => 'nullable|string',
+            'parent_id' => 'nullable|exists:countries,id',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'bounding_box' => 'nullable|string',
+        ]);
+
+        //Parent Id is null
+        if (!isset($validatedData['parent_id'])) {
+            $validatedData['parent_id'] = null;
+            $validatedData['level'] = 0;
+        } else {
+            $validatedData['level'] = 1;
+        }
+
+        //Adding Created By User Id
+        $validatedData['created_by'] = Auth::user()->id;
+
+        //Create a new country
+        $country = Country::create($validatedData);
+
+        return redirect()->route('admin.country.index')->with('success', 'Country created successfully!!!');
+
     }
 
     /**
@@ -46,7 +77,9 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        //
+        $country = Country::with('user')->find($id);
+
+        return view('admin.dashboard.country.view', compact('country'));
     }
 
     /**
@@ -55,9 +88,10 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Country $country)
     {
-        //
+        $regions = Country::select('id', 'country')->where('level', 0)->get();
+        return view('admin.dashboard.country.edit', compact('regions', 'country'));
     }
 
     /**
@@ -67,9 +101,33 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Country $country)
     {
-        //
+        $validatedData = $request->validate([
+            'country' => 'required|string|max:255',
+            'country_code' => 'nullable|string|max:3',
+            'geometry' => 'nullable|string',
+            'parent_id' => 'nullable|exists:countries,id',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'bounding_box' => 'nullable|string',
+        ]);
+
+        //Parent Id is null
+        if (!isset($validatedData['parent_id'])) {
+            $validatedData['parent_id'] = null;
+            $validatedData['level'] = 0;
+        } else {
+            $validatedData['level'] = 1;
+        }
+
+        //Adding Created By User Id
+        $validatedData['created_by'] = Auth::user()->id;
+
+        //Create a new country
+        $country = $country->update($validatedData);
+
+        return redirect()->route('admin.country.index')->with('success', 'Country updated successfully!!!');
     }
 
     /**

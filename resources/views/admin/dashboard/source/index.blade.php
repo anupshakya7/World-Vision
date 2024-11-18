@@ -1,5 +1,5 @@
 @extends('admin.dashboard.layout.web')
-@section('title','Country')
+@section('title','Source')
 @section('content')
 <style>
     button {
@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{"Country"}}</h4>
+                        <h4 class="mb-sm-0">{{"Source"}}</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">World Vision</a></li>
-                                <li class="breadcrumb-item active">{{"Country"}}</li>
+                                <li class="breadcrumb-item active">{{"Source"}}</li>
                             </ol>
                         </div>
 
@@ -34,14 +34,14 @@
                             <div class="row g-4 align-items-center">
                                 <div class="col-sm">
                                     <div>
-                                        <h5 class="card-title mb-0">Country</h5>
+                                        <h5 class="card-title mb-0">Source</h5>
                                     </div>
                                 </div>
                                 <div class="col-sm-auto">
                                     <div class="d-flex flex-wrap align-items-start gap-2">
-                                        <a class="btn btn-soft-success" href="{{ route('admin.country.create') }}">
+                                        <a class="btn btn-soft-success" href="{{ route('admin.source.create') }}">
                                             <i class="ri-add-circle-line align-middle me-1"></i> {{ "Add"
-                                            }} {{ "Country" }}
+                                            }} {{ "Source" }}
                                         </a>
                                     </div>
                                 </div>
@@ -55,35 +55,35 @@
                                     <thead>
                                         <tr>
                                             <th>{{'#'}}</th>
-                                            <th>{{'Title'}}</th>
-                                            <th>{{'Country Code'}}</th>
-                                            <th>{{'Parent'}}</th>
-                                            <th>{{'Latitude'}}</th>
-                                            <th>{{'Longitude'}}</th>
-                                            <th>{{'Bounding Box'}}</th>
-                                            <th>{{'Geometry'}}</th>
-                                            <th>{{'Level'}}</th>
+                                            <th>{{'Indicator'}}</th>
+                                            <th>{{'Source'}}</th>
+                                            <th>{{'Data Level'}}</th>
+                                            <th>{{'Impid'}}</th>
+                                            <th>{{'Units'}}</th>
+                                            <th>{{'Description'}}</th>
+                                            <th>{{'Url'}}</th>
+                                            <th>{{'Link'}}</th>
                                             <th>{{'Created By'}}</th>
                                             <th>{{'Action'}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($countries as $country)
+                                        @foreach($sources as $source)
                                         <tr>
-                                            <td>{{$country->id}}</td>
-                                            <td>{{$country->country}}</td>
-                                            <td>{{$country->country_code}}</td>
-                                            <td>{{$country->parent_id}}</td>
-                                            <td>{{$country->latitude}}</td>
-                                            <td>{{$country->longitude}}</td>
-                                            <td>{{$country->bounding_box}}</td>
-                                            <td>{{Str::limit($country->geometry,50)}}</td>
-                                            <td>{{$country->level == 0 ? 'Region':'Country'}}</td>
-                                            <td>{{$country->user->name}}</td>
+                                            <td>{{$source->id}}</td>
+                                            <td>{{$source->indicator->variablename}}</td>
+                                            <td>{{$source->source}}</td>
+                                            <td>{{$source->data_level}}</td>
+                                            <td>{{$source->impid}}</td>
+                                            <td>{{$source->units}}</td>
+                                            <td>{{Str::limit($source->description,100)}}</td>
+                                            <td>{{$source->url}}</td>
+                                            <td>{{$source->link}}</td>
+                                            <td>{{$source->user->name}}</td>
                                             <td>
-                                                <a href="{{route('admin.country.show',$country)}}"><i
+                                                <a href="{{route('admin.source.show',$source)}}"><i
                                                         class="ri-eye-line align-bottom me-2 text-success"></i>
-                                                    <a href="{{route('admin.country.edit',$country)}}"><i
+                                                    <a href="{{route('admin.source.edit',$source)}}"><i
                                                             class="ri-pencil-fill align-bottom me-2 text-primary"></i></a>
                                             </td>
                                         </tr>
@@ -91,7 +91,7 @@
                                     </tbody>
 
                                 </table>
-                                {{$countries->links()}}
+                                {{$sources->links()}}
                             </div>
                         </div>
                     </div>

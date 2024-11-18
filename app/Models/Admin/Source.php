@@ -6,19 +6,19 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Source extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'country',
-        'country_code',
-        'parent_id',
-        'latitude',
-        'longitude',
-        'bounding_box',
-        'geometry',
-        'level',
+        'indicator_id',
+        'source',
+        'data_level',
+        'impid',
+        'units',
+        'description',
+        'url',
+        'link',
         'created_by'
     ];
 
@@ -27,5 +27,8 @@ class Country extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-
+    public function indicator()
+    {
+        return $this->belongsTo(Indicator::class, 'indicator_id');
+    }
 }

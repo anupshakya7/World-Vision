@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\SourceController;
+use App\Http\Controllers\Admin\IndicatorController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
@@ -22,4 +24,10 @@ Route::middleware(['auth'])->group(function () {
 
     //Country Management
     Route::resource('country', CountryController::class);
+
+    //Indicator
+    Route::resource('indicator', IndicatorController::class);
+
+    //Source
+    Route::resource('source',SourceController::class);
 });

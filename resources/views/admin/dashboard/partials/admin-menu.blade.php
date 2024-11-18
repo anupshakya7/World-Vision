@@ -65,39 +65,81 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarCountry" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarCountry">
+                    <a class="nav-link menu-link" href="#sidebarCountryMain" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarCountryMain">
                         <i class="ri-flag-line"></i>
                         <span data-key="t-country">{{ 'Country Management' }}</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarCountry">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'Create' }}</a>
-                            </li>
-                        </ul>
+                    <div class="collapse menu-dropdown" style="margin-left:20px;" id="sidebarCountryMain">
+                        <a class="nav-link menu-link" href="#sidebarCountry" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountry">
+                            <span data-key="t-country">{{ 'Country' }}</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarCountry">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="nav-link menu-link" href="#sidebarCountryData" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountryData">
+                            <span data-key="t-country">{{ 'Country Data' }}</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarCountryData">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">{{ 'Create' }}</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarSubCountry" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarSubCountry">
+                {{-- SubCountry --}}
+                {{-- <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarSubCountryMain" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarSubCountryMain">
                         <i class="ri-flag-line"></i>
                         <span data-key="t-country">{{ 'Sub Country Management' }}</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarSubCountry">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'List' }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'Create' }}</a>
-                            </li>
-                        </ul>
+                    <div class="collapse menu-dropdown" style="margin-left:20px;" id="sidebarSubCountryMain">
+                        <a class="nav-link menu-link" href="#sidebarSubCountry" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarSubCountry">
+                            <span data-key="t-country">{{ 'Sub Country' }}</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarSubCountry">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">{{ 'Create' }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="nav-link menu-link" href="#sidebarSubCountryData" data-bs-toggle="collapse"
+                            role="button" aria-expanded="false" aria-controls="sidebarSubCountryData">
+                            <span data-key="t-country">{{ 'Sub Country Data' }}</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarSubCountryData">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">{{ 'Create' }}</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </li>
+                </li> --}}
+                {{-- SubCountry --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarIndicators" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCountry">
@@ -107,10 +149,10 @@
                     <div class="collapse menu-dropdown" id="sidebarIndicators">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'List' }}</a>
+                                <a href="{{route('admin.indicator.index')}}" class="nav-link">{{ 'List' }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'Create' }}</a>
+                                <a href="{{route('admin.indicator.create')}}" class="nav-link">{{ 'Create' }}</a>
                             </li>
                         </ul>
                     </div>
@@ -124,10 +166,10 @@
                     <div class="collapse menu-dropdown" id="sidebarSource">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'List' }}</a>
+                                <a href="{{route('admin.source.index')}}" class="nav-link">{{ 'List' }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'Create' }}</a>
+                                <a href="{{route('admin.source.create')}}" class="nav-link">{{ 'Create' }}</a>
                             </li>
                         </ul>
                     </div>

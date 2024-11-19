@@ -21,7 +21,7 @@
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">World Vision</a></li>
                                 <li class="breadcrumb-item"><a href="{{route('admin.indicator.index')}}">Indicator</a>
                                 </li>
-                                <li class="breadcrumb-item active">{{"Indicator"}}</li>
+                                <li class="breadcrumb-item active">{{$indicator->variablename}}</li>
                             </ol>
                         </div>
 

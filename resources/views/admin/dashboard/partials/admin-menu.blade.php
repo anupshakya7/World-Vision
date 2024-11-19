@@ -37,6 +37,8 @@
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboard</span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
+
+                {{-- Start User Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarAuth">
@@ -64,6 +66,29 @@
                         </ul>
                     </div>
                 </li>
+                {{-- End User Management --}}
+                
+                {{-- Start Category Color Management --}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarCategoryColor" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarCategoryColor">
+                        <i class=" ri-line-chart-line"></i>
+                        <span data-key="t-country">{{ 'Category Color' }}</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarCategoryColor">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('admin.category-color.index')}}" class="nav-link">{{ 'List' }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.category-color.create')}}" class="nav-link">{{ 'Create' }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- End Category Color Management --}}
+
+                {{-- Start Country Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarCountryMain" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCountryMain">
@@ -92,17 +117,19 @@
                         <div class="collapse menu-dropdown" id="sidebarCountryData">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    <a href="{{route('admin.country-data.index')}}" class="nav-link">{{ 'List' }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">{{ 'Create' }}</a>
+                                    <a href="{{route('admin.country-data.create')}}" class="nav-link">{{ 'Create' }}</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </li>
-                {{-- SubCountry --}}
-                {{-- <li class="nav-item">
+                {{-- End Country Management --}}
+
+                {{-- Start Sub Country Management --}}
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSubCountryMain" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarSubCountryMain">
                         <i class="ri-flag-line"></i>
@@ -116,30 +143,32 @@
                         <div class="collapse menu-dropdown" id="sidebarSubCountry">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    <a href="{{route('admin.sub-country.index')}}" class="nav-link">{{ 'List' }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">{{ 'Create' }}</a>
+                                    <a href="{{route('admin.sub-country.create')}}" class="nav-link">{{ 'Create' }}</a>
                                 </li>
                             </ul>
                         </div>
-                        <a class="nav-link menu-link" href="#sidebarSubCountryData" data-bs-toggle="collapse"
-                            role="button" aria-expanded="false" aria-controls="sidebarSubCountryData">
+                        <a class="nav-link menu-link" href="#sidebarSubCountryData" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarSubCountryData">
                             <span data-key="t-country">{{ 'Sub Country Data' }}</span>
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarSubCountryData">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    <a href="{{route('admin.sub-country-data.index')}}" class="nav-link">{{ 'List' }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">{{ 'Create' }}</a>
+                                    <a href="{{route('admin.sub-country-data.create')}}" class="nav-link">{{ 'Create' }}</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                </li> --}}
-                {{-- SubCountry --}}
+                </li>
+                {{-- End Sub Country Management --}}
+                
+                {{-- Start Indicator Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarIndicators" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCountry">
@@ -157,6 +186,9 @@
                         </ul>
                     </div>
                 </li>
+                {{-- End Indicator Management --}}
+
+                {{-- Start Source Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSource" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarSource">
@@ -174,6 +206,7 @@
                         </ul>
                     </div>
                 </li>
+                {{-- End Indicator Management --}}
 
                 {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button"

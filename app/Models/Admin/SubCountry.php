@@ -6,20 +6,16 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class SubCountry extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'country',
-        'country_code',
-        'parent_id',
-        'latitude',
-        'longitude',
-        'bounding_box',
+        'countrycode',
+        'geocode',
+        'geoname',
         'geometry',
-        'level',
-        'created_by'
+        'created_by',
     ];
 
     public function user()
@@ -27,9 +23,7 @@ class Country extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function countryData(){
-        return $this->hasMany(CountryData::class,'countrycode','country_code');
+    public function subcountryData(){
+        return $this->hasMany(SubCountryData::class,'geocode','geocode');
     }
-
-
 }

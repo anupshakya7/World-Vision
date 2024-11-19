@@ -1,5 +1,5 @@
 @extends('admin.dashboard.layout.web')
-@section('title','Country View')
+@section('title','Sub Country Data View')
 @section('content')
 <style>
     button {
@@ -14,13 +14,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{"Country"}}</h4>
+                        <h4 class="mb-sm-0">{{"Sub Country Data"}}</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">World Vision</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.country.index')}}">Country</a></li>
-                                <li class="breadcrumb-item active">{{$country->country}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.country-data.index')}}">Sub Country Data</a></li>
+                                <li class="breadcrumb-item active">{{$subCountryData->subcountry->geoname}}</li>
                             </ol>
                         </div>
 
@@ -32,7 +32,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{$country->country}}</h5>
+                            <h5 class="card-title mb-0">{{$subCountryData->subcountry->geoname}}</h5>
                         </div>
 
                         <div class="card-body">
@@ -41,52 +41,64 @@
                                     <tbody>
                                         <tr>
                                             <th>ID</th>
-                                            <td>{{$country->id}}</td>
+                                            <td>{{$subCountryData->id}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Title</th>
-                                            <td>{{$country->country}}</td>
+                                            <th>Indicator</th>
+                                            <td>{{$subCountryData->indicator->variablename}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Country Code</th>
-                                            <td>{{$country->country_code}}</td>
+                                            <th>Sub Country</th>
+                                            <td>{{$subCountryData->subcountry->geoname}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Parent Id</th>
-                                            <td>{{$country->parent_id}}</td>
+                                            <th>Geo Code</th>
+                                            <td>{{$subCountryData->geocode}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Latitute</th>
-                                            <td>{{$country->latitude}}</td>
+                                            <th>Year</th>
+                                            <td>{{$subCountryData->year}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Longitude</th>
-                                            <td>{{$country->longitude}}</td>
+                                            <th>Raw</th>
+                                            <td>{{$subCountryData->raw}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Bounding Box</th>
-                                            <td>{{$country->bounding_box}}</td>
+                                            <th>Banded</th>
+                                            <td>{{$subCountryData->banded}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Geometry</th>
-                                            <td>{{$country->geometry}}</td>
+                                            <th>In Country Rank</th>
+                                            <td>{{$subCountryData->in_country_rank}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Level</th>
-                                            <td>{{$country->level == 0 ? 'Region':'Country'}}</td>
+                                            <th>Admin Category</th>
+                                            <td>{{$subCountryData->admin_cat}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Admin Color</th>
+                                            <td>{{$subCountryData->admin_col}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Source Id</th>
+                                            <td>{{$subCountryData->source_id}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Statement</th>
+                                            <td>{{$subCountryData->statements}}</td>
                                         </tr>
                                         <tr>
                                             <th>Created By</th>
-                                            <td>{{$country->user->name}}</td>
+                                            <td>{{$subCountryData->user->name}}</td>
                                         </tr>
                                         <tr>
                                             <th>Created At</th>
-                                            <td>{{Carbon\Carbon::parse($country->created_at)->format('Y-m-d')}}</td>
+                                            <td>{{Carbon\Carbon::parse($subCountryData->created_at)->format('Y-m-d')}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <a style="margin-top:20px;" class="btn btn-info"
-                                    href="{{route('admin.country.index')}}">
+                                    href="{{route('admin.sub-country-data.index')}}">
                                     <i class="ri-arrow-left-line"></i> Back to list
                                 </a>
                             </div>

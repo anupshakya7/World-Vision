@@ -6,19 +6,16 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class CategoryColor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'country',
-        'country_code',
-        'parent_id',
-        'latitude',
-        'longitude',
-        'bounding_box',
-        'geometry',
-        'level',
+        'category',
+        'country_col_order',
+        'country_leg_col',
+        'subcountry_col_order',
+        'subcountry_leg_col',
         'created_by'
     ];
 
@@ -26,10 +23,4 @@ class Country extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-
-    public function countryData(){
-        return $this->hasMany(CountryData::class,'countrycode','country_code');
-    }
-
-
 }

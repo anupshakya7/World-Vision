@@ -39,6 +39,10 @@
                                 </div>
                                 <div class="col-sm-auto">
                                     <div class="d-flex flex-wrap align-items-start gap-2">
+                                        <a class="btn btn-soft-primary" href="{{ route('admin.sub-country-data.generate.csv') }}">
+                                            <i class="mdi mdi-file-export align-middle me-1"></i>
+                                            {{ "Export Data" }}
+                                        </a>
                                         <a class="btn btn-soft-success" href="{{ route('admin.sub-country-data.create') }}">
                                             <i class="ri-add-circle-line align-middle me-1"></i> {{ "Add"
                                             }} {{ "Sub Country Data" }}
@@ -75,7 +79,7 @@
                                         <tr>
                                             <td>{{$subcountryData->id}}</td>
                                             <td>{{$subcountryData->indicator->variablename}}</td>
-                                            <td>{{$subcountryData->subcountry->geoname}}</td>
+                                            <td>{{optional($subcountryData->subcountry)->geoname ?? 'No Sub Country'}}</td>
                                             <td>{{$subcountryData->geocode}}</td>
                                             <td>{{$subcountryData->year}}</td>
                                             <td>{{$subcountryData->raw}}</td>

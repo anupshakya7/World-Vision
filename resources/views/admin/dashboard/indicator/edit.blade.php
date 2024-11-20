@@ -85,7 +85,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="variablename_long">{{ 'Variable Name Long' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="variablename_long" class="form-control"
                                                         value="{{ old('variablename_long',$indicator->variablename_long) }}"
                                                         placeholder="Variable Name Long">
@@ -98,7 +98,8 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="variablename">Variable Name</label>
+                                                    <label for="variablename">Variable Name <span
+                                                        style="color:red;">*</span></label>
                                                     <input type="text" name="variablename" class="form-control"
                                                         value="{{ old('variablename',$indicator->variablename) }}"
                                                         placeholder="Variable Name">
@@ -111,7 +112,8 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="vardescription">Variable Description</label>
+                                                    <label for="vardescription">Variable Description <span
+                                                        style="color:red;">*</span></label>
                                                     <textarea class="form-control" id="vardescription"
                                                         name="vardescription"
                                                         rows="4">{{ old('vardescription',$indicator->vardescription) }}</textarea>

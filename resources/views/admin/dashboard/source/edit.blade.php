@@ -87,7 +87,8 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="source">{{ 'Source' }}</label>
+                                                    <label for="source">{{ 'Source' }} <span
+                                                        style="color:red;">*</span></label>
                                                     <input type="text" name="source" class="form-control"
                                                         value="{{ old('source',$source->source) }}" placeholder="Source">
                                                     @if($errors->has('source'))

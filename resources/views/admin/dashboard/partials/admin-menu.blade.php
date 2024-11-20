@@ -72,7 +72,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarCategoryColor" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCategoryColor">
-                        <i class=" ri-line-chart-line"></i>
+                        <i class=" mdi mdi-invert-colors"></i>
                         <span data-key="t-country">{{ 'Category Color' }}</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarCategoryColor">
@@ -92,7 +92,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarCountryMain" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCountryMain">
-                        <i class="ri-flag-line"></i>
+                        <i class="mdi mdi-earth"></i>
                         <span data-key="t-country">{{ 'Country Management' }}</span>
                     </a>
                     <div class="collapse menu-dropdown" style="margin-left:20px;" id="sidebarCountryMain">
@@ -121,6 +121,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('admin.country-data.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.country-data.bulk')}}" class="nav-link">{{ 'Bulk Import' }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -162,6 +165,9 @@
                                 <li class="nav-item">
                                     <a href="{{route('admin.sub-country-data.create')}}" class="nav-link">{{ 'Create' }}</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.sub-country-data.bulk')}}" class="nav-link">{{ 'Bulk Import' }}</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -192,7 +198,7 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSource" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarSource">
-                        <i class=" ri-line-chart-line"></i>
+                        <i class="mdi mdi-source-branch"></i>
                         <span data-key="t-country">{{ 'Source' }}</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarSource">

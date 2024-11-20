@@ -39,6 +39,10 @@
                                 </div>
                                 <div class="col-sm-auto">
                                     <div class="d-flex flex-wrap align-items-start gap-2">
+                                        <a class="btn btn-soft-primary" href="{{ route('admin.country-data.generate.csv') }}">
+                                            <i class="mdi mdi-file-export align-middle me-1"></i>
+                                            {{ "Export Data" }}
+                                        </a>
                                         <a class="btn btn-soft-success" href="{{ route('admin.country-data.create') }}">
                                             <i class="ri-add-circle-line align-middle me-1"></i> {{ "Add"
                                             }} {{ "Country Data" }}
@@ -57,6 +61,7 @@
                                             <th>{{'#'}}</th>
                                             <th>{{'Indicator'}}</th>
                                             <th>{{'Country'}}</th>
+                                            <th>{{'Country Code'}}</th>
                                             <th>{{'Year'}}</th>
                                             <th>{{'Country Score'}}</th>
                                             <th>{{'Country Color'}}</th>
@@ -70,7 +75,8 @@
                                         <tr>
                                             <td>{{$countryData->id}}</td>
                                             <td>{{$countryData->indicator->variablename}}</td>
-                                            <td>{{$countryData->country->country}}</td>
+                                            <td>{{optional($countryData->country)->country ?? 'No Country'}}</td>
+                                            <td>{{$countryData->countrycode}}</td>
                                             <td>{{$countryData->year}}</td>
                                             <td>{{$countryData->country_score}}</td>
                                             <td>{{$countryData->country_col}}</td>

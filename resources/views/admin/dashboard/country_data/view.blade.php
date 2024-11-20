@@ -20,7 +20,7 @@
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">World Vision</a></li>
                                 <li class="breadcrumb-item"><a href="{{route('admin.country-data.index')}}">Country Data</a></li>
-                                <li class="breadcrumb-item active">{{$countryData->country->country}}</li>
+                                <li class="breadcrumb-item active">{{optional($countryData->country)->country ?? 'No Country'}}</li>
                             </ol>
                         </div>
 
@@ -32,7 +32,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{$countryData->country->country}}</h5>
+                            <h5 class="card-title mb-0">{{optional($countryData->country)->country ?? 'No Country'}}</h5>
                         </div>
 
                         <div class="card-body">
@@ -49,7 +49,11 @@
                                         </tr>
                                         <tr>
                                             <th>Country</th>
-                                            <td>{{$countryData->country->country}}</td>
+                                            <td>{{optional($countryData->country)->country ?? 'No Country'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Country Code</th>
+                                            <td>{{$countryData->countrycode}}</td>
                                         </tr>
                                         <tr>
                                             <th>Year</th>

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\CountryCSVData;
 use App\Models\Admin\CategoryColor;
 use App\Models\Admin\Country;
 use App\Models\Admin\CountryData;
 use App\Models\Admin\Indicator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Bus;
 
 class CountryDataController extends Controller
 {
@@ -129,4 +131,65 @@ class CountryDataController extends Controller
     {
         //
     }
+
+    //Export csv file
+    public function generateCSV(){
+        $countriesData = CountryData::with(['indicator','country','user'])->get();
+        $filename = "country-data.csv";
+        $fp = fopen($filename,'w+');
+        fputcsv($fp,array('ID','Indicator','Country','Country Code','Year','Country Score','Country Color','Country Cateory','Created By','Created At'));
+
+        foreach($countriesData as $row){
+            fputcsv($fp,array(
+                $row->id,
+                $row->indicator->variablename,
+                optional($row->country)->country ?? 'No Country',
+                $row->countrycode,
+                $row->year,
+                $row->country_score,
+                $row->country_col,
+                $row->country_cat,
+                $row->user->name,
+                $row->created_at
+            ));
+        }
+
+        fclose($fp);
+        $headers = array('Content-Type'=>'text/csv');
+
+        return response()->download($filename,'country-data.csv',$headers);
+    }
+
+    //Bulk Import
+    public function bulk(){
+        return view('admin.dashboard.country_data.bulk');
+    }
+
+    public function bulkInsert(Request $request){
+        $validatedData = $request->validate([
+            'csv_file'=>'required|file|mimes:csv|max:500000'
+        ]);
+
+        if($request->has('csv_file')){
+            $csv = file($request->csv_file);
+            $chunks = array_chunk($csv,500);
+            $header = [];
+            $batch = Bus::batch([])->dispatch();
+
+            foreach($chunks as $key=>$chunk){
+                $data = array_map('str_getcsv',$chunk);
+
+                if($key == 0){
+                    $header = $data[0];
+                    unset($data[0]);
+                }
+                $batch->add(new CountryCSVData($header,$data));
+            }
+        }
+
+        $countriesData = CountryData::with(['indicator','country','user'])->paginate(10);
+
+        return redirect()->route('admin.country-data.index',compact('countriesData'))->with('success','CSV import added on queue. Will update you once done!!!');
+    }
+
 }

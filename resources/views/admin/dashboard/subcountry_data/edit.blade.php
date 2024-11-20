@@ -106,7 +106,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="source_id">{{ 'Source Id' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="source_id" class="form-control"
                                                         value="{{ old('source_id',$subcountryData->source_id) }}"
                                                         placeholder="Source Id">
@@ -118,7 +118,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
-                                                <label for="statements">Statement</label>
+                                                <label for="statements">Statement <span
+                                                    style="color:red;">*</span></label>
                                                 <textarea class="form-control" id="statements" name="statements"
                                                     rows="6">{{ old('statements',$subcountryData->statements) }}</textarea>
                                                 @if($errors->has('statements'))
@@ -136,7 +137,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="year">{{ 'Year' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <select class="form-control form-select" id="year"
                                                     name="year">
                                                         <option value="">None</option>
@@ -154,7 +155,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="raw">{{ 'Raw' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="raw" class="form-control"
                                                             value="{{ old('raw',$subcountryData->raw) }}" placeholder="Raw">
                                                     @if($errors->has('raw'))
@@ -167,7 +168,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="banded">{{ 'Banded' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="banded" class="form-control"
                                                             value="{{ old('banded',$subcountryData->banded) }}" placeholder="Banded">
                                                     @if($errors->has('banded'))
@@ -180,7 +181,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="in_country_rank">{{ 'In Country Rank' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="in_country_rank" class="form-control"
                                                             value="{{ old('in_country_rank',$subcountryData->in_country_rank) }}" placeholder="In Country Rank">
                                                     @if($errors->has('in_country_rank'))
@@ -193,7 +194,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="admin_cat">{{ 'Admin Category' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="admin_cat" id="admin_cat" class="form-control"
                                                             value="{{ old('admin_cat',$subcountryData->admin_cat) }}" placeholder="Admin Category"
                                                     @if($errors->has('admin_cat'))
@@ -206,7 +207,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="admin_col">{{ 'Admin Color' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                             <select id="admin_col" class="form-control form-select" name="admin_col">
                                                                 <option value="">None</option>
                                                                 @foreach($countries_colour as $country_colour)

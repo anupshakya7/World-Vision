@@ -35,6 +35,14 @@ Route::middleware(['auth'])->group(function () {
 
     //Country Data
     Route::resource('country-data',CountryDataController::class);
+    Route::prefix('country-data')->name('country-data.')->group(function(){
+        //Export
+        Route::get('generate/csv',[CountryDataController::class,'generateCSV'])->name('generate.csv');
+
+        //Import
+        Route::get('bulk/insert',[CountryDataController::class,'bulk'])->name('bulk');
+        Route::post('bulk/insert',[CountryDataController::class,'bulkInsert'])->name('bulk.insert');
+    });
 
     //Sub Country Management
     //Sub Country
@@ -42,6 +50,14 @@ Route::middleware(['auth'])->group(function () {
 
     //Sub Country Data
     Route::resource('sub-country-data',SubCountryDataController::class);
+    Route::prefix('sub-country-data')->name('sub-country-data.')->group(function(){
+        //Export
+        Route::get('generate/csv',[SubCountryDataController::class,'generateCSV'])->name('generate.csv');
+
+        //Import
+        Route::get('bulk/insert',[SubCountryDataController::class,'bulk'])->name('bulk');
+        Route::post('bulk/insert',[SubCountryDataController::class,'bulkInsert'])->name('bulk.insert');
+    });
 
     //Indicator
     Route::resource('indicator', IndicatorController::class);

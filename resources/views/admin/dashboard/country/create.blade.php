@@ -71,7 +71,7 @@
                                                     <label for="title">{{ 'Title' }} <span
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="country" class="form-control"
-                                                        value="{{ old('country') }}">
+                                                        value="{{ old('country') }}" placeholder="Title">
                                                     @if($errors->has('country'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('country') }}
@@ -101,6 +101,11 @@
                                                     <br>Example:"MultiPolygon (((74.91574100000005387
                                                     37.23732800000000509, 74.39221200000005751 37.17507200000007117,
                                                     74.56543000000007737 ,...)))" </small>
+                                                @if($errors->has('geometry'))
+                                                <em class="invalid-feedback">
+                                                    {{ $errors->first('geometry') }}
+                                                </em>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -117,18 +122,33 @@
                                                     <option value="{{ $region->id }}">{{ $region->country }}</option>
                                                     @endforeach
                                                 </select>
+                                            @if($errors->has('parent_id'))
+                                            <em class="invalid-feedback">
+                                                {{ $errors->first('parent_id') }}
+                                            </em>
+                                            @endif
                                             </div>
 
                                             <div class="col-12" style="margin-top:20px;">
                                                 <label for="latitude">Latitude</label>
                                                 <input type="text" class="form-control" id="latitude" name="latitude"
-                                                    value="{{ old('latitude') }}">
+                                                    value="{{ old('latitude') }}" placeholder="Latitude">
+                                                @if($errors->has('latitude'))
+                                                <em class="invalid-feedback">
+                                                    {{ $errors->first('latitude') }}
+                                                </em>
+                                                @endif
                                             </div>
 
                                             <div class="col-12" style="margin-top:30px;">
                                                 <label for="longitude">Longitude</label>
                                                 <input type="text" class="form-control" id="longitude" name="longitude"
-                                                    value="{{ old('longitude') }}">
+                                                    value="{{ old('longitude') }}" placeholder="Longitude">
+                                                @if($errors->has('longitude'))
+                                                <em class="invalid-feedback">
+                                                    {{ $errors->first('longitude') }}
+                                                </em>
+                                                @endif
                                             </div>
 
                                             <div class="col-12" style="margin-top:20px;">
@@ -139,6 +159,11 @@
                                                     in JSON format. <br>Example: {"min_latitude":
                                                     40.477399,"min_longitude": -74.259090,"max_latitude":
                                                     40.917577,"max_longitude": -73.700272}</small>
+                                                @if($errors->has('bounding_box'))
+                                                <em class="invalid-feedback">
+                                                    {{ $errors->first('bounding_box') }}
+                                                </em>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

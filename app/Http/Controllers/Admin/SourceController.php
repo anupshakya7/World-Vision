@@ -44,7 +44,7 @@ class SourceController extends Controller
     {
         $validatedData = $request->validate([
             'indicator_id' => 'required|integer|exists:indicators,id',
-            'source' => 'nullable|string|max:255',
+            'source' => 'required|string|max:255',
             'data_level' => 'nullable|integer|min:0',
             'impid' => 'required|integer|min:0',
             'units' => 'nullable|string|max:255',
@@ -98,7 +98,7 @@ class SourceController extends Controller
     {
         $validatedData = $request->validate([
             'indicator_id' => 'required|integer|exists:indicators,id',
-            'source' => 'nullable|string|max:255',
+            'source' => 'required|string|max:255',
             'data_level' => 'nullable|integer|min:0',
             'impid' => 'required|integer|min:0',
             'units' => 'nullable|string|max:255',

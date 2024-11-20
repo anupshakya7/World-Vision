@@ -69,7 +69,8 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="countrycode">Country</label>
+                                                    <label for="countrycode">Country <span
+                                                        style="color:red;">*</span></label>
                                                     <select class="form-control form-select" id="countrycode"
                                                         name="countrycode">
                                                         <option value="">None</option>
@@ -87,7 +88,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="geoname">{{ 'Geo Name' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="geoname" class="form-control"
                                                         value="{{ old('geoname',$subcountry->geoname) }}"
                                                         placeholder="Geo Name">
@@ -122,7 +123,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="title">{{ 'Geo Code' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="geocode" class="form-control"
                                                         value="{{ old('geocode',$subcountry->geocode) }}"
                                                         placeholder="eg. AFG.1_1">

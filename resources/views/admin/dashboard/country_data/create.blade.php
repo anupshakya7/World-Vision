@@ -105,7 +105,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="country_col">{{ 'Country Color' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                             <select id="country_col" class="form-control form-select" name="country_col">
                                                                 <option value="">None</option>
                                                                 @foreach($countries_colour as $country_colour)
@@ -128,7 +128,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="year">{{ 'Year' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <select class="form-control form-select" id="year"
                                                     name="year">
                                                         <option value="">None</option>
@@ -146,7 +146,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="country_score">{{ 'Country Score' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="country_score" class="form-control"
                                                             value="{{ old('country_score') }}" placeholder="Country Score">
                                                     @if($errors->has('country_score'))
@@ -159,7 +159,7 @@
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="country_cat">{{ 'Color Category' }} <span
-                                                            style="color:red;"></span></label>
+                                                            style="color:red;">*</span></label>
                                                     <input type="text" name="country_cat" id="country_cat" class="form-control"
                                                             value="{{ old('country_cat') }}" readonly placeholder="Color Category">
                                                     <small>Change value according to country color</small>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Authorize\PermissionController;
+use App\Http\Controllers\Admin\Authorize\RoleController;
 use App\Http\Controllers\Admin\CategoryColorController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\CountryDataController;
@@ -25,6 +27,13 @@ Route::middleware(['auth'])->group(function () {
 
     //Logout
     Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+
+    //User Management
+    //Role
+    Route::resource('roles',RoleController::class);
+    
+    //Permission
+    Route::resource('permissions',PermissionController::class);
 
     //Category Colors
     Route::resource('category-color',CategoryColorController::class);

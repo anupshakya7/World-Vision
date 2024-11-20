@@ -39,6 +39,7 @@
                 </li> <!-- end Dashboard Menu -->
 
                 {{-- Start User Management --}}
+                @role('admin')
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarAuth">
@@ -48,11 +49,11 @@
                     <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'Permissions'
+                                <a href="{{route('admin.permissions.index')}}" class="nav-link">{{ 'Permissions'
                                     }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'Role' }}</a>
+                                <a href="{{route('admin.roles.index')}}" class="nav-link">{{ 'Role' }}</a>
                             </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">{{ 'User' }}</a>
@@ -66,6 +67,7 @@
                         </ul>
                     </div>
                 </li>
+                @endrole
                 {{-- End User Management --}}
                 
                 {{-- Start Category Color Management --}}

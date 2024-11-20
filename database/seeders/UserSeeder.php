@@ -24,6 +24,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => Hash::make('password'),
             'company_id' => $companies->first()->id
-        ]);
+        ])->assignRole('admin');
     }
 }

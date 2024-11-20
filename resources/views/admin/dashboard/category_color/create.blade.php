@@ -19,10 +19,10 @@
         border: 1px solid red;
     }
 </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/ui/trumbowyg.min.css" rel="stylesheet">
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/ui/trumbowyg.min.css" rel="stylesheet">
 <!-- Import table plugin specific stylesheet -->
 <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/plugins/table/ui/trumbowyg.table.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/plugins/table/ui/trumbowyg.table.min.css"> --}}
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
@@ -72,11 +72,11 @@
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="country_leg_col" class="form-control"
                                                         value="{{ old('country_leg_col') }}" placeholder="Country Color">
-                                                    @if($errors->has('country_leg_col'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('country_leg_col') }}
-                                                    </em>
-                                                    @endif
+                                                        @if($errors->has('country_leg_col'))
+                                                        <span class="invalid-feedback">
+                                                            {{ $errors->first('country_leg_col') }}
+                                                        </span>
+                                                        @endif
                                                 </div>
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
@@ -86,9 +86,9 @@
                                                     <input type="text" name="subcountry_leg_col" class="form-control"
                                                         value="{{ old('subcountry_leg_col') }}" placeholder="Sub Country Color">
                                                     @if($errors->has('subcountry_leg_col'))
-                                                    <em class="invalid-feedback">
+                                                    <span class="invalid-feedback">
                                                         {{ $errors->first('subcountry_leg_col') }}
-                                                    </em>
+                                                    </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -99,9 +99,9 @@
                                                     <input type="text" name="category" class="form-control"
                                                         value="{{ old('category') }}" placeholder="Category">
                                                     @if($errors->has('category'))
-                                                    <em class="invalid-feedback">
+                                                    <span class="invalid-feedback">
                                                         {{ $errors->first('category') }}
-                                                    </em>
+                                                    </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -118,9 +118,9 @@
                                                     <input type="text" name="country_col_order" class="form-control"
                                                         value="{{ old('country_col_order') }}" placeholder="Country Color Order">
                                                     @if($errors->has('country_col_order'))
-                                                    <em class="invalid-feedback">
+                                                    <span class="invalid-feedback">
                                                         {{ $errors->first('country_col_order') }}
-                                                    </em>
+                                                    </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -131,9 +131,9 @@
                                                     <input type="text" name="subcountry_col_order" class="form-control"
                                                         value="{{ old('subcountry_col_order') }}" placeholder="Sub Country Color Order">
                                                     @if($errors->has('subcountry_col_order'))
-                                                    <em class="invalid-feedback">
+                                                    <span class="invalid-feedback">
                                                         {{ $errors->first('subcountry_col_order') }}
-                                                    </em>
+                                                    </span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -159,9 +159,9 @@
 
     @endsection
     @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js"></script> --}}
     <!-- Import all plugins you want AFTER importing jQuery and Trumbowyg -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/plugins/table/trumbowyg.table.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/plugins/table/trumbowyg.table.min.js"></script>
     <script>
         $( document ).ready(function() {
             $('#body-desc').trumbowyg({btns: [
@@ -187,5 +187,5 @@
         toastr.success("{{session('message')}}")
       @endif
 
-    </script>
+    </script> --}}
     @endsection

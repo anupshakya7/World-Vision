@@ -68,7 +68,7 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="title">{{ 'Title' }} <span
+                                                    <label for="country">{{ 'Country' }} <span
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="country" class="form-control"
                                                         value="{{ old('country',$country->country) }}" placeholder="Title">

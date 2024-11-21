@@ -56,7 +56,7 @@
                                 <a href="{{route('admin.roles.index')}}" class="nav-link">{{ 'Role' }}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">{{ 'User' }}</a>
+                                <a href="{{route('admin.users.index')}}" class="nav-link">{{ 'User' }}</a>
                             </li>
 
                             <li class="nav-item">

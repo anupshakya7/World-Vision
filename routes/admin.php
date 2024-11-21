@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SourceController;
 use App\Http\Controllers\Admin\IndicatorController;
 use App\Http\Controllers\Admin\SubCountryController;
 use App\Http\Controllers\Admin\SubCountryDataController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
@@ -29,11 +30,22 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [LoginController::class,'logout'])->name('logout');
 
     //User Management
+    //User
+    Route::resource('users',UserController::class);
+    Route::get('users/{user}/roles',[UserController::class,'userRoles'])->name('users.roles');
+    Route::post('users/{user}/roles',[UserController::class,'assignPermission'])->name('users.roles.assign');
+    Route::delete('users/{user}/roles/{role}',[UserController::class,'removePermission'])->name('users.roles.remove');
+
     //Role
     Route::resource('roles',RoleController::class);
-    
+    Route::post('roles/{role}/permissions',[RoleController::class,'assignPermission'])->name('roles.permissions');
+    Route::delete('roles/{role}/permissions/{permission}',[RoleController::class,'removePermission'])->name('roles.permissions.remove');
+
     //Permission
     Route::resource('permissions',PermissionController::class);
+    Route::post('permissions/{permission}/roles',[PermissionController::class,'assignRole'])->name('permissions.roles');
+    Route::delete('permissions/{permission}/roles/{role}',[PermissionController::class,'removeRole'])->name('permissions.roles.remove');
+
 
     //Category Colors
     Route::resource('category-color',CategoryColorController::class);

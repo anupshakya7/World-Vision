@@ -18,23 +18,6 @@
     .has-error .form-control {
         border: 1px solid red;
     }
-    .danger_cross{
-        display: inline-block;
-        position: relative;
-    }
-    .danger_cross_icon{
-        position: absolute;
-        top:-10px;
-        right:-14px;
-        border-radius: 50%;
-        font-size: 15px;
-        color:#757070;
-        background: none;
-        border: none;
-    }
-    .danger_cross_icon:hover{
-        color: #bd3030;
-    }
 </style>
 {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/ui/trumbowyg.min.css" rel="stylesheet">
 <!-- Import table plugin specific stylesheet -->
@@ -97,80 +80,19 @@
                                                         @endif
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </div>
-
-                                    
-
-                                </div>
-
-                                <div class="col-12" style="margin-top:30px;">
-                                    <button class="btn btn-success float-end" type="submit" id="uploadButton">
-                                        <i class="ri-save-line"></i> Update
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{ 'Role Permissions' }}</h5>
-                        </div>
-
-                        <div class="card-body">
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                            <div class="row">
-                                @if(count($role->permissions)>0)
-                                    <div class="col-12 mb-4">
-                                        <label for="assign_permission">Assigned Permissions:  </label>
-                                       
-                                        @foreach($role->permissions as $permission)
-                                        <div class="danger_cross mx-2">
-                                            <span class="badge text-bg-primary">{{$permission->name}}</span>
-                                            <form action="{{route('admin.roles.permissions.remove',['role'=>$role,'permission'=>$permission])}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="danger_cross_icon">
-                                                    <i class="mdi mdi-close-circle"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    @endif
-                               
-                            </div>
-                           
-                            <form action="{{ route('admin.roles.permissions',$role) }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-12 mb-4">
+                                            <h5 class="my-3">Add Permissions</h5>
+                                            <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="name">{{ 'Permission' }} <span
+                                                    <label for="permission">{{ 'Permissions' }} <span
                                                             style="color:red;">*</span></label>
-                                                        <select class="form-control form-select" id="permission"
+                                                    <select class="form-control form-select" id="permission"
                                                         name="permission">
-                                                            <option value="">None</option>
-                                                            @foreach ($permissions as $permission)
-                                                            <option value="{{ $permission->name }}">{{ $permission->name }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <option value="">None</option>
+                                                        @foreach ($permissions as $permission)
+                                                        <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                         @if($errors->has('permission'))
                                                         <span class="invalid-feedback">
                                                             {{ $errors->first('permission') }}
@@ -191,7 +113,7 @@
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">
-                                        <i class="ri-save-line"></i> Assign
+                                        <i class="ri-save-line"></i> Update
                                     </button>
                                 </div>
                             </form>

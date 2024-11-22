@@ -69,6 +69,45 @@
                         </div>
 
                         <div class="card-body">
+                            <div class="mb-2">
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>ID</th>
+                                            <td>{{$user->id}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <td>{{$user->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email Address</th>
+                                            <td>{{$user->email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Company</th>
+                                            <td>{{$user->company->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Created At</th>
+                                            <td>{{Carbon\Carbon::parse($user->created_at)->format('Y-m-d')}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {{-- <a style="margin-top:20px;" class="btn btn-info"
+                                    href="{{route('admin.roles.index')}}">
+                                    <i class="ri-arrow-left-line"></i> Back to list
+                                </a> --}}
+                            </div>
+
+                            <nav class="mb-3">
+                                <div class="nav nav-tabs">
+
+                                </div>
+                            </nav>
+                            <div class="tab-content">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,17 +133,19 @@
                             <div class="row">
                                 @if(count($user->roles)>0)
                                     <div class="col-12 mb-4">
-                                        <label for="assign_permission">Assigned Role:  </label>
+                                        <label for="assign_role">Assigned Role:  </label>
                                         @foreach($user->roles as $role)
                                         <div class="danger_cross mx-2">
                                             <span class="badge text-bg-danger">{{$role->name}}</span>
-                                            <form action="{{route('admin.roles.permissions.remove',['role'=>$role,'permission'=>$permission])}}" method="POST">
+                                            @if($role->name !== 'admin')
+                                            <form action="{{route('admin.users.roles.remove',['user'=>$user,'role'=>$role])}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="danger_cross_icon">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </button>
                                             </form>
+                                            @endif
                                         </div>
                                         @endforeach
                                     </div>
@@ -112,25 +153,25 @@
                                
                             </div>
                            
-                            <form action="{{ route('admin.roles.permissions',$role) }}" method="POST">
+                            <form action="{{route('admin.users.roles.assign',$user)}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-12 mb-4">
                                                 <div class="form-group">
-                                                    <label for="name">{{ 'Permission' }} <span
+                                                    <label for="role">{{ 'Roles' }} <span
                                                             style="color:red;">*</span></label>
-                                                        <select class="form-control form-select" id="permission"
-                                                        name="permission">
+                                                        <select class="form-control form-select" id="role"
+                                                        name="role">
                                                             <option value="">None</option>
-                                                            @foreach ($permissions as $permission)
-                                                            <option value="{{ $permission->name }}">{{ $permission->name }}</option>
+                                                            @foreach ($roles as $role)
+                                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
                                                             @endforeach
                                                         </select>
-                                                        @if($errors->has('permission'))
+                                                        @if($errors->has('role'))
                                                         <span class="invalid-feedback">
-                                                            {{ $errors->first('permission') }}
+                                                            {{ $errors->first('role') }}
                                                         </span>
                                                         @endif
                                                 </div>
@@ -144,7 +185,7 @@
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">
-                                    <a class="btn btn-info" href="{{route('admin.roles.index')}}">
+                                    <a class="btn btn-info" href="{{route('admin.users.index')}}">
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">

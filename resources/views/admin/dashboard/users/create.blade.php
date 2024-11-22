@@ -1,5 +1,5 @@
 @extends('admin.dashboard.layout.web')
-@section('title','Role Create')
+@section('title','User Create')
 @section('content')
 <style>
     .error {
@@ -30,13 +30,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Role</h4>
+                        <h4 class="mb-sm-0">User</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">World Vision</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.roles.index')}}">Role</a></li>
-                                <li class="breadcrumb-item active">{{ 'Create Role'}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}">User</a></li>
+                                <li class="breadcrumb-item active">{{ 'Create User'}}</li>
                             </ol>
                         </div>
 
@@ -48,7 +48,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{ 'Add Role' }}</h5>
+                            <h5 class="card-title mb-0">{{ 'Create User' }}</h5>
                         </div>
 
                         <div class="card-body">
@@ -61,17 +61,17 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('admin.roles.store') }}" method="POST">
+                            <form action="{{ route('admin.users.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 mb-4">
                                                 <div class="form-group">
-                                                    <label for="name">{{ 'Role' }} <span
+                                                    <label for="name">{{ 'Name' }} <span
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="name" class="form-control"
-                                                        value="{{ old('name') }}" placeholder="Role">
+                                                        value="{{ old('name') }}" placeholder="Name">
                                                         @if($errors->has('name'))
                                                         <span class="invalid-feedback">
                                                             {{ $errors->first('name') }}
@@ -79,13 +79,47 @@
                                                         @endif
                                                 </div>
                                             </div>
+                                            <div class="col-12 mb-4">
+                                                <div class="form-group">
+                                                    <label for="email">{{ 'Email Address' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <input type="text" name="email" class="form-control"
+                                                        value="{{ old('email') }}" placeholder="Email Address">
+                                                        @if($errors->has('email'))
+                                                        <span class="invalid-feedback">
+                                                            {{ $errors->first('email') }}
+                                                        </span>
+                                                        @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <div class="form-group">
+                                                    <label for="company_id">{{ 'Company' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <select class="form-control form-select" id="company_id"
+                                                        name="company_id">
+                                                        <option value="">None</option>
+                                                        @foreach ($companies as $company)
+                                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @if($errors->has('company_id'))
+                                                    <span class="invalid-feedback">
+                                                        {{ $errors->first('company_id') }}
+                                                    </span>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
+
+                                    
+
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">
-                                    <a class="btn btn-info" href="{{route('admin.roles.index')}}">
+                                    <a class="btn btn-info" href="{{route('admin.users.index')}}">
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">

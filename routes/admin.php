@@ -33,8 +33,10 @@ Route::middleware(['auth'])->group(function () {
     //User
     Route::resource('users',UserController::class);
     Route::get('users/{user}/roles',[UserController::class,'userRoles'])->name('users.roles');
-    Route::post('users/{user}/roles',[UserController::class,'assignPermission'])->name('users.roles.assign');
-    Route::delete('users/{user}/roles/{role}',[UserController::class,'removePermission'])->name('users.roles.remove');
+    Route::post('users/{user}/roles',[UserController::class,'assignRole'])->name('users.roles.assign');
+    Route::delete('users/{user}/roles/{role}',[UserController::class,'removeRole'])->name('users.roles.remove');
+    Route::post('users/{user}/permissions',[UserController::class,'givePermission'])->name('users.permissions.assign');
+    Route::post('users/{user}/permissions/{permission}',[UserController::class,'revokePermission'])->name('users.permissions.remove');
 
     //Role
     Route::resource('roles',RoleController::class);

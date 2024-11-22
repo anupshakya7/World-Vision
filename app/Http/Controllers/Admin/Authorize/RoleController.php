@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::whereNotIn('name',['admin'])->paginate(10);
-
+        
         return view('admin.dashboard.roles.index', compact('roles'));
     }
 

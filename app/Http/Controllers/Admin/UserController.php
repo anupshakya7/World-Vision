@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('company')->paginate(10);
+        $users = User::with('company')->where('company_id',auth()->user()->company_id)->paginate(10);
         return view('admin.dashboard.users.index',compact('users'));
     }
 

@@ -21,7 +21,7 @@ class CountryDataController extends Controller
      */
     public function index()
     {
-        $countriesData = CountryData::with(['indicator','country','user'])->paginate(10);
+        $countriesData = CountryData::with(['indicator','country','user'])->where('company_id',auth()->user()->company_id)->paginate(10);
        
         return view('admin.dashboard.country_data.index', compact('countriesData'));
     }
@@ -59,6 +59,7 @@ class CountryDataController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $countryData = CountryData::create($validatedData);
@@ -114,6 +115,7 @@ class CountryDataController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $countryData = CountryData::find($id)->update($validatedData);

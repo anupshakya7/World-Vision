@@ -52,8 +52,8 @@
                                             <td>{{$country->country_code}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Parent Id</th>
-                                            <td>{{$country->parent_id}}</td>
+                                            <th>Parent</th>
+                                            <td>{{optional($country->parentCountry)->country}}</td>
                                         </tr>
                                         <tr>
                                             <th>Latitute</th>

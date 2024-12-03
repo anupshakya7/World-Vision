@@ -19,11 +19,20 @@ class UserSeeder extends Seeder
     {
         $companies = Company::factory(5)->create();
 
+        //World Vision
+        // User::create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@admin.com',
+        //     'password' => Hash::make('password'),
+        //     'company_id' => $companies->first()->id
+        // ])->assignRole('admin');
+
+        //ATI
         User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'name' => 'Admin ATI',
+            'email' => 'admin_ati@admin.com',
             'password' => Hash::make('password'),
-            'company_id' => $companies->first()->id
+            'company_id' => $companies->first()->id+1
         ])->assignRole('admin');
     }
 }

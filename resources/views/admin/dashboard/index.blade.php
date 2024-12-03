@@ -66,7 +66,7 @@
                                     </div><!-- end card body -->
                                 </div><!-- end card -->
                             </div><!-- end col -->
-                        
+                            @if(auth()->user()->company_id == 1)
                             <div class="col-xl-3 col-md-6">
                                 <!-- card -->
                                 <div class="card card-animate">
@@ -89,7 +89,8 @@
                                     </div><!-- end card body -->
                                 </div><!-- end card -->
                             </div><!-- end col -->
-                        
+                            @endif
+
                             <div class="col-xl-3 col-md-6">
                                 <!-- card -->
                                 <div class="card card-animate">
@@ -113,6 +114,7 @@
                                 </div><!-- end card -->
                             </div><!-- end col -->
                             
+                            @if(auth()->user()->company_id == 1)
                             <div class="col-xl-3 col-md-6">
                                 <!-- card -->
                                 <div class="card card-animate">
@@ -135,6 +137,7 @@
                                     </div><!-- end card body -->
                                 </div><!-- end card -->
                             </div><!-- end col --> 
+                            @endif
                         </div>
 
                         <div class="row">

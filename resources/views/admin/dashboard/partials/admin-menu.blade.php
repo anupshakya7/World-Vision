@@ -3,6 +3,7 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
+        @if(auth()->user()->company_id == 1)
         <a href="{{route('admin.home')}}" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="{{asset('img/world_vision.png')}}" alt="" height="25">
@@ -14,12 +15,33 @@
         <!-- Light Logo-->
         <a href="{{route('admin.home')}}" class="logo logo-light">
             <span class="logo-sm">
-                <img src="{{asset('img/favicons/favicon-32x32.png')}}" alt="" height="20">
+                <img src="{{asset('img/favicons/favicon-32x32.png')}}" alt="World Vision" height="20">
             </span>
             <span class="logo-lg">
-                <img src="{{asset('img/world_vision.png')}}" alt="" height="45">
+                <img src="{{asset('img/world_vision.png')}}" alt="World Vision" height="45">
             </span>
         </a>
+        @endif
+
+        @if(auth()->user()->company_id == 2)
+        <a href="{{route('admin.home')}}" class="logo logo-dark">
+            <span class="logo-sm">
+                <img src="" alt="ATI" height="25">
+            </span>
+            <span class="logo-lg">
+                <img src="" alt="ATI" height="50">
+            </span>
+        </a>
+        <!-- Light Logo-->
+        <a href="{{route('admin.home')}}" class="logo logo-light">
+            <span class="logo-sm">
+                <img src="" alt="ATI" height="20">
+            </span>
+            <span class="logo-lg">
+                <img src="" alt="ATI" height="45">
+            </span>
+        </a>
+        @endif
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
@@ -133,6 +155,7 @@
                 </li>
                 {{-- End Country Management --}}
 
+                @if(auth()->user()->company_id == 1)
                 {{-- Start Sub Country Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSubCountryMain" data-bs-toggle="collapse" role="button"
@@ -175,7 +198,8 @@
                     </div>
                 </li>
                 {{-- End Sub Country Management --}}
-                
+                @endif
+
                 {{-- Start Indicator Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarIndicators" data-bs-toggle="collapse" role="button"
@@ -196,6 +220,7 @@
                 </li>
                 {{-- End Indicator Management --}}
 
+                @if(auth()->user()->company_id == 1)
                 {{-- Start Source Management --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSource" data-bs-toggle="collapse" role="button"
@@ -215,6 +240,7 @@
                     </div>
                 </li>
                 {{-- End Indicator Management --}}
+                @endif
 
                 {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button"

@@ -19,7 +19,8 @@ class Source extends Model
         'description',
         'url',
         'link',
-        'created_by'
+        'created_by',
+        'company_id'
     ];
 
     public function user()

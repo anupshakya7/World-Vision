@@ -55,6 +55,7 @@ class SourceController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $source = Source::create($validatedData);
@@ -109,6 +110,7 @@ class SourceController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Update a new Source
         $source = $source->update($validatedData);

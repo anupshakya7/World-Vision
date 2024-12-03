@@ -16,7 +16,7 @@ class CategoryColorController extends Controller
      */
     public function index()
     {
-        $colors = CategoryColor::with('user')->paginate(10);
+        $colors = CategoryColor::with('user')->where('company_id',auth()->user()->company_id)->paginate(10);
 
         return view('admin.dashboard.category_color.index', compact('colors'));
     }
@@ -49,6 +49,7 @@ class CategoryColorController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new Category Color
         $colors = CategoryColor::create($validatedData);
@@ -99,6 +100,7 @@ class CategoryColorController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $categoryColor = $categoryColor->update($validatedData);

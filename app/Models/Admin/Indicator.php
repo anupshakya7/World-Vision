@@ -24,7 +24,8 @@ class Indicator extends Model
         'subnational',
         'national',
         'imputation',
-        'created_by'
+        'created_by',
+        'company_id'
     ];
 
     public function user()

@@ -13,9 +13,9 @@ class IndexController extends Controller
 {
     public function dashboard()
     {
-        $data['countries'] = Country::count();
+        $data['countries'] = Country::where('level',1)->count();
+        $data['indicators'] = Indicator::where('company_id',auth()->user()->company_id)->count();
         $data['subcountries'] = SubCountry::count();
-        $data['indicators'] = Indicator::count();
         $data['sources'] = Source::count();
 
         return view('admin.dashboard.index',compact('data'));

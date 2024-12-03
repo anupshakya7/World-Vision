@@ -16,7 +16,7 @@ class IndicatorController extends Controller
      */
     public function index()
     {
-        $indicators = Indicator::with('user')->paginate(10);
+        $indicators = Indicator::with('user')->where('company_id',auth()->user()->company_id)->paginate(10);
 
         return view('admin.dashboard.indicator.index', compact('indicators'));
     }
@@ -43,7 +43,7 @@ class IndicatorController extends Controller
             'domain' => 'required|string',
             'variablename_long' => 'required|string',
             'variablename' => 'required|string',
-            'vardescription' => 'required|string',
+            'vardescription' => 'nullable|string',
             'varunits' => 'nullable|string',
             'is_more_better' => 'nullable',
             'transformation' => 'nullable|string',
@@ -57,6 +57,7 @@ class IndicatorController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $indicator = Indicator::create($validatedData);
@@ -72,8 +73,8 @@ class IndicatorController extends Controller
      */
     public function show($id)
     {
-        $indicator = Indicator::with('user')->find($id);
-
+        $indicator = Indicator::with('user')->where('company_id',auth()->user()->company_id)->find($id);
+        
         return view('admin.dashboard.indicator.view', compact('indicator'));
     }
 
@@ -113,10 +114,11 @@ class IndicatorController extends Controller
             'imputation' => 'nullable|string',
         ]);
 
-        //Adding Created By User Id
+        //Adding Created By User Id and Company Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
-        //Create a new country
+        //Create a new Indicator
         $indicator = $indicator->update($validatedData);
 
         return redirect()->route('admin.indicator.index')->with('success', 'Indicator updated successfully!!!');

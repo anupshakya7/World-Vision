@@ -16,7 +16,8 @@ class CategoryColor extends Model
         'country_leg_col',
         'subcountry_col_order',
         'subcountry_leg_col',
-        'created_by'
+        'created_by',
+        'company_id'
     ];
 
     public function user()

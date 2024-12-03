@@ -18,6 +18,7 @@ class CountryData extends Model
         'country_col',
         'country_cat',
         'created_by',
+        'company_id'
     ];
 
     public function user()

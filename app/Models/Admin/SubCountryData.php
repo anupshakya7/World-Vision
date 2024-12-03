@@ -21,7 +21,8 @@ class SubCountryData extends Model
         'admin_col',
         'source_id',
         'statements',
-        'created_by'
+        'created_by',
+        'company_id'
     ];
 
     public function user()

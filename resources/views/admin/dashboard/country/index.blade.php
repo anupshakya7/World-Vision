@@ -73,7 +73,7 @@
                                             <td>{{$country->id}}</td>
                                             <td>{{$country->country}}</td>
                                             <td>{{$country->country_code}}</td>
-                                            <td>{{$country->parent_id}}</td>
+                                            <td>{{optional($country->parentCountry)->country}}</td>
                                             <td>{{$country->latitude}}</td>
                                             <td>{{$country->longitude}}</td>
                                             <td>{{$country->bounding_box}}</td>

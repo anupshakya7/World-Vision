@@ -109,8 +109,7 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="vardescription">Variable Description <span
-                                                        style="color:red;">*</span></label>
+                                                    <label for="vardescription">Variable Description</label>
                                                     <textarea class="form-control" id="vardescription"
                                                         name="vardescription"
                                                         rows="4">{{ old('vardescription') }}</textarea>

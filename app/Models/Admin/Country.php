@@ -19,12 +19,17 @@ class Country extends Model
         'bounding_box',
         'geometry',
         'level',
-        'created_by'
+        'created_by',
+        'company_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function parentCountry(){
+        return $this->belongsTo(Country::class,'parent_id');
     }
 
     public function countryData(){

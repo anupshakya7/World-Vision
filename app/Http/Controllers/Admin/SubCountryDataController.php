@@ -63,6 +63,7 @@ class SubCountryDataController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $subCountryData = SubCountryData::create($validatedData);
@@ -122,6 +123,7 @@ class SubCountryDataController extends Controller
 
         //Adding Created By User Id
         $validatedData['created_by'] = Auth::user()->id;
+        $validatedData['company_id'] = Auth::user()->company_id;
 
         //Create a new country
         $subCountryData = SubCountryData::find($id)->update($validatedData);

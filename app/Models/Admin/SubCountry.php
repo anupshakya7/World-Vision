@@ -16,6 +16,7 @@ class SubCountry extends Model
         'geoname',
         'geometry',
         'created_by',
+        'company_id'
     ];
 
     public function user()

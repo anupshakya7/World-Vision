@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WorldVision\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware(['guest'])->group(function () {
+    //Authentication
+    Route::get('/login', [LoginController::class,'login'])->name('login');
+    Route::post('/login', [LoginController::class,'loginSubmit'])->name('login');
+    //Authentication
 });

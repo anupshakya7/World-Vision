@@ -22,10 +22,12 @@ return new class extends Migration
             $table->string('country_col');
             $table->string('country_cat');
             $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('company_id');
             $table->timestamps();
 
             $table->foreign('indicator_id')->references('id')->on('indicators')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

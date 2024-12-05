@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->string('domain');
             $table->string('variablename_long');
             $table->string('variablename');
-            $table->text('vardescription');
+            $table->text('vardescription')->nullable();
             $table->string('varunits')->nullable();
             $table->tinyInteger('is_more_better')->nullable();
             $table->string('transformation')->nullable();
@@ -28,9 +28,11 @@ return new class () extends Migration {
             $table->string('national')->nullable();
             $table->string('imputation')->nullable();
             $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('company_id');
             $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

@@ -43,16 +43,7 @@ class IndicatorController extends Controller
             'domain' => 'required|string',
             'variablename_long' => 'required|string',
             'variablename' => 'required|string',
-            'vardescription' => 'required|string',
-            'varunits' => 'nullable|string',
-            'is_more_better' => 'nullable',
-            'transformation' => 'nullable|string',
-            'lower' => 'nullable|numeric|between:-999.9,999.9',
-            'upper' => 'nullable|integer|min:0',
-            'sourcelinks' => 'nullable|string',
-            'subnational' => 'nullable|string',
-            'national' => 'nullable|string',
-            'imputation' => 'nullable|string',
+            'vardescription' => 'nullable|string'
         ]);
 
         //Adding Created By User Id
@@ -73,9 +64,13 @@ class IndicatorController extends Controller
      */
     public function show($id)
     {
-        $indicator = Indicator::with('user')->find($id);
+        $indicator = Indicator::with('user')->filterIndicator()->find($id);
 
-        return view('ati.admin.dashboard.indicator.view', compact('indicator'));
+        if($indicator){
+            return view('ati.admin.dashboard.indicator.view', compact('indicator'));
+        }else{
+            return redirect()->back()->with('error','Data Not Found');
+        }
     }
 
     /**
@@ -86,7 +81,13 @@ class IndicatorController extends Controller
      */
     public function edit(Indicator $indicator)
     {
-        return view('ati.admin.dashboard.indicator.edit', compact('indicator'));
+        $indicator = $indicator->filterIndicator()->find($indicator->id);
+        
+        if($indicator){
+            return view('ati.admin.dashboard.indicator.edit', compact('indicator'));
+        }else{
+            return redirect()->back()->with('error','Data Not Found');
+        }
     }
 
     /**
@@ -102,16 +103,7 @@ class IndicatorController extends Controller
             'domain' => 'required|string',
             'variablename_long' => 'required|string',
             'variablename' => 'required|string',
-            'vardescription' => 'required|string',
-            'varunits' => 'nullable|string',
-            'is_more_better' => 'nullable',
-            'transformation' => 'nullable|string',
-            'lower' => 'nullable|numeric|between:-999.9,999.9',
-            'upper' => 'nullable|integer|min:0',
-            'sourcelinks' => 'nullable|string',
-            'subnational' => 'nullable|string',
-            'national' => 'nullable|string',
-            'imputation' => 'nullable|string',
+            'vardescription' => 'nullable|string'
         ]);
 
         //Adding Created By User Id

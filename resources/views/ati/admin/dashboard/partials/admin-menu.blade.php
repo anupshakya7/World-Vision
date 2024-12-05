@@ -97,8 +97,55 @@
                             aria-expanded="false" aria-controls="sidebarCountryData">
                             <span data-key="t-country">{{ 'Country Data' }}</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarCountryData">
-                            <ul class="nav nav-sm flex-column">
+                        <div class="collapse menu-dropdown" id="sidebarCountryData" style="margin-left: 15px;">
+                            {{-- Upcomming Elections --}}
+                            <a class="nav-link menu-link" href="#sidebarCountryDataElection" data-bs-toggle="collapse" role="button"
+                                aria-expanded="false" aria-controls="sidebarCountryDataElection">
+                                <span data-key="t-country">{{ 'Upcoming Elections' }}</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarCountryDataElection">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {{-- Historical Democratic Disruptions --}}
+                            <a class="nav-link menu-link" href="#sidebarCountryDataDisruptions" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountryDataDisruptions">
+                            <span data-key="t-country">{{ 'Historical Disruptions' }}</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarCountryDataDisruptions">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {{-- Indicator Score --}}
+                            <a class="nav-link menu-link" href="#sidebarCountryDataIndicator" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountryDataIndicator">
+                            <span data-key="t-country">{{ 'Indicator Score' }}</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarCountryDataIndicator">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            {{-- <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="{{route('admin.ati.country-data.index')}}" class="nav-link">{{ 'List' }}</a>
                                 </li>
@@ -108,7 +155,7 @@
                                 <li class="nav-item">
                                     <a href="{{route('admin.ati.country-data.bulk')}}" class="nav-link">{{ 'Bulk Import' }}</a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
                     </div>
                 </li>

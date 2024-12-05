@@ -65,7 +65,7 @@
                             <form action="{{ route('admin.ati.indicator.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -109,11 +109,10 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="vardescription">Variable Description <span
-                                                        style="color:red;">*</span></label>
+                                                    <label for="vardescription">Variable Description</label>
                                                     <textarea class="form-control" id="vardescription"
                                                         name="vardescription"
-                                                        rows="4">{{ old('vardescription') }}</textarea>
+                                                        rows="4" placeholder="Variable Description">{{ old('vardescription') }}</textarea>
                                                     @if($errors->has('vardescription'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('vardescription') }}
@@ -121,35 +120,10 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="varunits">Variable Units</label>
-                                                    <textarea class="form-control" id="varunits" name="varunits"
-                                                        rows="3">{{ old('varunits') }}</textarea>
-                                                    @if($errors->has('varunits'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('varunits') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="sourcelinks">Source Links</label>
-                                                    <input type="text" name="sourcelinks" class="form-control"
-                                                        value="{{ old('sourcelinks') }}" placeholder="Source Links">
-                                                    @if($errors->has('sourcelinks'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('sourcelinks') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
+                                    {{-- <div class="col-4">
                                         <div class="row">
 
 
@@ -240,7 +214,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">

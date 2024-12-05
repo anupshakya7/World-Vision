@@ -21,9 +21,11 @@ return new class extends Migration
             $table->integer('subcountry_col_order');
             $table->string('subcountry_leg_col');
             $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('company_id');
             $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

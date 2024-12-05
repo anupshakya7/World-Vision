@@ -15,7 +15,7 @@ class IndexController extends Controller
     {
         $data['countries'] = Country::where('level',1)->count();
         $data['subcountries'] = SubCountry::count();
-        $data['indicators'] = Indicator::count();
+        $data['indicators'] = Indicator::filterIndicator()->count();
         $data['sources'] = Source::count();
 
         return view('worldvision.admin.dashboard.index',compact('data'));

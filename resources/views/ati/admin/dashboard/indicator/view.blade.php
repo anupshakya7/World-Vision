@@ -61,42 +61,6 @@
                                             <td>{{$indicator->vardescription}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Variable Units</th>
-                                            <td>{{$indicator->varunits}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Is More Better</th>
-                                            <td>{{$indicator->is_more_better}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Transformation</th>
-                                            <td>{{$indicator->transformation}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Lower</th>
-                                            <td>{{$indicator->lower}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Upper</th>
-                                            <td>{{$indicator->upper}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Source Links</th>
-                                            <td>{{$indicator->sourcelinks}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Subnational</th>
-                                            <td>{{$indicator->subnational}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>National</th>
-                                            <td>{{$indicator->national}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Imputation</th>
-                                            <td>{{$indicator->imputation}}</td>
-                                        </tr>
-                                        <tr>
                                             <th>Created By</th>
                                             <td>{{$indicator->user->name}}</td>
                                         </tr>

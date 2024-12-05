@@ -59,15 +59,6 @@
                                             <th>{{'Variable Name Long'}}</th>
                                             <th>{{'Variable Name'}}</th>
                                             <th>{{'Variable Description'}}</th>
-                                            <th>{{'Variable Units'}}</th>
-                                            <th>{{'Is More Better'}}</th>
-                                            <th>{{'Transformation'}}</th>
-                                            <th>{{'Lower'}}</th>
-                                            <th>{{'Upper'}}</th>
-                                            <th>{{'Source Links'}}</th>
-                                            <th>{{'Subnational'}}</th>
-                                            <th>{{'National'}}</th>
-                                            <th>{{'Imputation'}}</th>
                                             <th>{{'Created By'}}</th>
                                             <th>{{'Action'}}</th>
                                         </tr>
@@ -80,15 +71,6 @@
                                             <td>{{$indicator->variablename_long}}</td>
                                             <td>{{$indicator->variablename}}</td>
                                             <td>{{Str::limit($indicator->vardescription,50)}}</td>
-                                            <td>{{Str::limit($indicator->varunits,40)}}</td>
-                                            <td>{{$indicator->is_more_better}}</td>
-                                            <td>{{$indicator->transformation}}</td>
-                                            <td>{{$indicator->lower}}</td>
-                                            <td>{{$indicator->upper}}</td>
-                                            <td>{{$indicator->sourcelinks}}</td>
-                                            <td>{{$indicator->subnational}}</td>
-                                            <td>{{$indicator->national}}</td>
-                                            <td>{{$indicator->imputation}}</td>
                                             <td>{{$indicator->user->name }}</td>
                                             <td>
                                                 <a href="{{route('admin.ati.indicator.show',$indicator)}}"><i

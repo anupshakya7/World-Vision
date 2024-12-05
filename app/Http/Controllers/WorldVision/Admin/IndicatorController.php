@@ -16,7 +16,7 @@ class IndicatorController extends Controller
      */
     public function index()
     {
-        $indicators = Indicator::with('user')->paginate(10);
+        $indicators = Indicator::with('user')->filterIndicator()->paginate(10);
 
         return view('worldvision.admin.dashboard.indicator.index', compact('indicators'));
     }
@@ -73,9 +73,13 @@ class IndicatorController extends Controller
      */
     public function show($id)
     {
-        $indicator = Indicator::with('user')->find($id);
+        $indicator = Indicator::with('user')->filterIndicator()->find($id);
 
-        return view('worldvision.admin.dashboard.indicator.view', compact('indicator'));
+        if($indicator){
+            return view('worldvision.admin.dashboard.indicator.view', compact('indicator'));
+        }else{
+            return redirect()->back()->with('error','Data Not Found');
+        }
     }
 
     /**
@@ -86,7 +90,13 @@ class IndicatorController extends Controller
      */
     public function edit(Indicator $indicator)
     {
-        return view('worldvision.admin.dashboard.indicator.edit', compact('indicator'));
+        $indicator = $indicator->filterIndicator()->find($indicator->id);
+        
+        if($indicator){
+            return view('worldvision.admin.dashboard.indicator.edit', compact('indicator'));
+        }else{
+            return redirect()->back()->with('error','Data Not Found');
+        }
     }
 
     /**

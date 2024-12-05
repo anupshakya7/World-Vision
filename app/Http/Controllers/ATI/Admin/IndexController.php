@@ -11,7 +11,7 @@ class IndexController extends Controller
 {
     public function dashboard(){
         $data['countries'] = Country::where('level',1)->count();
-        $data['indicators'] = Indicator::count();
+        $data['indicators'] = Indicator::filterIndicator()->count();
         
         return view('ati.admin.dashboard.index',compact('data'));
     }

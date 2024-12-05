@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WorldVision\Auth\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +24,9 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [LoginController::class,'loginSubmit'])->name('login');
     //Authentication
 });
+
+Route::middleware(['auth'])->group(function(){
+    //Logout
+    Route::post('/logout', [LoginController::class,'logout'])->name('logout');
+});
+

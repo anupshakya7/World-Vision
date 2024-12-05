@@ -18,6 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = 'admin';
+    public const ATIHOME = 'admin-ati';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -39,6 +40,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('admin')
                 ->name('admin.')
                 ->group(base_path('routes/worldvision_admin.php'));
+            Route::middleware('web')
+                ->prefix('admin-ati')
+                ->name('admin.ati.')
+                ->group(base_path('routes/ati_admin.php'));
         });
     }
 

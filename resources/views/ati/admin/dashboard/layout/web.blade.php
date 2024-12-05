@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/favicons/favicon-16x16.png')}}">
     <link rel="manifest" href="{{asset('img/favicons/site.webmanifest')}}">
 
-    <title>@yield('title') - {{ 'World Vision' }}</title>
+    <title>@yield('title') - {{ 'ATI' }}</title>
 
     <!-- jsvectormap css -->
     <link href="{{asset('assets/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -141,7 +141,7 @@
             </div>
         </header>
 
-        @include('worldvision.admin.dashboard.partials.admin-menu')
+        @include('ati.admin.dashboard.partials.admin-menu')
 
         @yield('content')
         <footer class="footer">
@@ -150,7 +150,7 @@
                     <div class="col-sm-6">
                         <script>
                             document.write(new Date().getFullYear())
-                        </script> © World Vision
+                        </script> © ATI
                     </div>
                     <div class="col-sm-6">
                         <div class="text-sm-end d-none d-sm-block">

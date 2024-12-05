@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function dashboard()
     {
-        $data['countries'] = Country::count();
+        $data['countries'] = Country::where('level',1)->count();
         $data['subcountries'] = SubCountry::count();
         $data['indicators'] = Indicator::count();
         $data['sources'] = Source::count();

@@ -15,12 +15,9 @@ use App\Http\Controllers\WorldVision\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','check_company'])->group(function () {
     //Dashboard
     Route::get('/', [IndexController::class,'dashboard'])->name('home');
-
-    //Logout
-    Route::post('/logout', [LoginController::class,'logout'])->name('logout');
 
     //User Management
     //User

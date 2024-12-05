@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\WorldVision\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Auth\LoginRequest;
@@ -22,7 +22,13 @@ class LoginController extends Controller
 
         // Attempt to Authenticate the User
         if (Auth::attempt(['email' => $credentials['email'],'password' => $credentials['password']])) {
-            return redirect()->route('admin.home')->with('success', 'Login Successfully!!!');
+            $user = Auth::user();
+            if($user->company_id == 1){
+                return redirect()->route('admin.home')->with('success', 'Login Successfully!!!');
+            }elseif($user->company_id == 2){
+                return redirect()->route('admin.ati.home')->with('success', 'Login Successfully!!!');
+            }
+            
         }
 
     }

@@ -28,6 +28,10 @@ class Indicator extends Model
         'company_id'
     ];
 
+    public function scopeFilterIndicator($query){
+        return $query->where('company_id',auth()->user()->company_id);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');

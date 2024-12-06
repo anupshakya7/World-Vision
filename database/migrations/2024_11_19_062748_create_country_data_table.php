@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('country_data', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('indicator_id');
+            $table->unsignedBigInteger('indicator_id')->nullable();
             $table->string('countrycode');
-            $table->integer('year');
-            $table->decimal('country_score',11,9);
-            $table->string('country_col');
-            $table->string('country_cat');
+            $table->integer('year')->nullable();
+            $table->double('country_score')->nullable();
+            $table->string('country_col')->nullable();
+            $table->string('country_cat')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('company_id');
             $table->timestamps();

@@ -1,5 +1,5 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Country Data Create')
+@section('title','Historical Disruption Create')
 @section('content')
 <style>
     .error {
@@ -35,8 +35,9 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.ati.country-data.index')}}">Country Data</a></li>
-                                <li class="breadcrumb-item active">{{ 'Create Country Data'}}</li>
+                                <li class="breadcrumb-item active">{{ 'Country Data'}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.ati.disruptions.index')}}">Historical Disruption</a></li>
+                                <li class="breadcrumb-item active">{{ 'Create Historical Disruption'}}</li>
                             </ol>
                         </div>
 
@@ -61,30 +62,12 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('admin.ati.country-data.store') }}" method="POST">
+                            <form action="{{ route('admin.ati.disruptions.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="indicator_id">{{ 'Indicator' }} <span
-                                                            style="color:red;">*</span></label>
-                                                        <select class="form-control form-select" id="indicator_id"
-                                                        name="indicator_id">
-                                                            <option value="">None</option>
-                                                            @foreach ($indicators as $indicator)
-                                                            <option value="{{ $indicator->id }}">{{ $indicator->variablename }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    @if($errors->has('indicator_id'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('indicator_id') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="countrycode">{{ 'Country' }} <span
                                                             style="color:red;">*</span></label>
@@ -102,23 +85,6 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="country_col">{{ 'Country Color' }} <span
-                                                            style="color:red;">*</span></label>
-                                                            <select id="country_col" class="form-control form-select" name="country_col">
-                                                                <option value="">None</option>
-                                                                @foreach($countries_colour as $country_colour)
-                                                                    <option value="{{$country_colour->subcountry_leg_col}}" data-category="{{$country_colour->category}}" style="background-color: {{$country_colour->subcountry_leg_col}}; color: white;">{{$country_colour->subcountry_leg_col}} ({{$country_colour->category}})</option>
-                                                                @endforeach
-                                                            </select>
-                                                    @if($errors->has('country_col'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('country_col') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
                                         </div>
 
                                     </div>
@@ -127,25 +93,7 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="year">{{ 'Year' }} <span
-                                                            style="color:red;">*</span></label>
-                                                    <select class="form-control form-select" id="year"
-                                                    name="year">
-                                                        <option value="">None</option>
-                                                        @for ($i=now()->year;$i>=2000;$i--)
-                                                        <option value="{{ $i }}">{{ $i }}</option>
-                                                        @endfor
-                                                    </select>
-                                                    @if($errors->has('year'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('year') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="country_score">{{ 'Country Score' }} <span
+                                                    <label for="country_score">{{ 'Disruption Score' }} <span
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="country_score" class="form-control"
                                                             value="{{ old('country_score') }}" placeholder="Country Score">
@@ -156,26 +104,12 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="country_cat">{{ 'Color Category' }} <span
-                                                            style="color:red;">*</span></label>
-                                                    <input type="text" name="country_cat" id="country_cat" class="form-control"
-                                                            value="{{ old('country_cat') }}" readonly placeholder="Color Category">
-                                                    <small>Change value according to country color</small>
-                                                            @if($errors->has('country_cat'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('country_cat') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">
-                                    <a class="btn btn-info" href="{{route('admin.ati.country-data.index')}}">
+                                    <a class="btn btn-info" href="{{route('admin.ati.disruptions.index')}}">
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">

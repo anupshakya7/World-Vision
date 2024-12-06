@@ -106,10 +106,10 @@
                             <div class="collapse menu-dropdown" id="sidebarCountryDataElection">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{route('admin.ati.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                        <a href="{{route('admin.ati.elections.index')}}" class="nav-link">{{ 'List' }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('admin.ati.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                        <a href="{{route('admin.ati.elections.create')}}" class="nav-link">{{ 'Create' }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -122,10 +122,10 @@
                             <div class="collapse menu-dropdown" id="sidebarCountryDataDisruptions">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{route('admin.ati.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                        <a href="{{route('admin.ati.disruptions.index')}}" class="nav-link">{{ 'List' }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('admin.ati.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                        <a href="{{route('admin.ati.disruptions.create')}}" class="nav-link">{{ 'Create' }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -138,10 +138,10 @@
                             <div class="collapse menu-dropdown" id="sidebarCountryDataIndicator">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{route('admin.ati.country.index')}}" class="nav-link">{{ 'List' }}</a>
+                                        <a href="{{route('admin.ati.indicator-score.index')}}" class="nav-link">{{ 'List' }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('admin.ati.country.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                        <a href="{{route('admin.ati.indicator-score.create')}}" class="nav-link">{{ 'Create' }}</a>
                                     </li>
                                 </ul>
                             </div>

@@ -1,5 +1,5 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Country Data View')
+@section('title','Historical Disruption View')
 @section('content')
 <style>
     button {
@@ -14,12 +14,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{"Country Data"}}</h4>
+                        <h4 class="mb-sm-0">{{"Historical Disruption"}}</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.ati.country-data.index')}}">Country Data</a></li>
+                                <li class="breadcrumb-item active">{{'Country Data'}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.ati.disruptions.index')}}">Historical Disruption</a></li>
                                 <li class="breadcrumb-item active">{{optional($countryData->country)->country ?? 'No Country'}}</li>
                             </ol>
                         </div>
@@ -44,10 +45,6 @@
                                             <td>{{$countryData->id}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Indicator</th>
-                                            <td>{{$countryData->indicator->variablename}}</td>
-                                        </tr>
-                                        <tr>
                                             <th>Country</th>
                                             <td>{{optional($countryData->country)->country ?? 'No Country'}}</td>
                                         </tr>
@@ -56,20 +53,8 @@
                                             <td>{{$countryData->countrycode}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Year</th>
-                                            <td>{{$countryData->year}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Country Score</th>
+                                            <th>Disruption Score</th>
                                             <td>{{$countryData->country_score}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Country Color</th>
-                                            <td>{{$countryData->country_col}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Country Category</th>
-                                            <td>{{$countryData->country_cat}}</td>
                                         </tr>
                                         <tr>
                                             <th>Created By</th>
@@ -82,7 +67,7 @@
                                     </tbody>
                                 </table>
                                 <a style="margin-top:20px;" class="btn btn-info"
-                                    href="{{route('admin.ati.country-data.index')}}">
+                                    href="{{route('admin.ati.disruptions.index')}}">
                                     <i class="ri-arrow-left-line"></i> Back to list
                                 </a>
                             </div>

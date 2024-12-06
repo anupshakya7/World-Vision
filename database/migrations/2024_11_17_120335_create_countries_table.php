@@ -22,6 +22,7 @@ return new class () extends Migration {
             $table->longText('bounding_box')->nullable();
             $table->longText('geometry')->nullable();
             $table->integer('level');
+            $table->integer('ati');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('company_id');
             $table->timestamps();

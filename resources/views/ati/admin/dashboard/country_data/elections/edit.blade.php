@@ -1,5 +1,5 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Country Data Update')
+@section('title','Upcoming Election Update')
 @section('content')
 <style>
     .error {
@@ -30,13 +30,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Country Data</h4>
+                        <h4 class="mb-sm-0">Upcoming Election</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.ati.country-data.index')}}">Country Data</a></li>
-                                <li class="breadcrumb-item active">{{ 'Update Country Data'}}</li>
+                                <li class="breadcrumb-item">{{"Country Data"}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.ati.elections.index')}}">Upcoming Election</a></li>
+                                <li class="breadcrumb-item active">{{ 'Update Upcoming Election'}}</li>
                             </ol>
                         </div>
 
@@ -48,7 +49,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{ 'Update Country Data' }}</h5>
+                            <h5 class="card-title mb-0">{{ 'Update Upcoming Election' }}</h5>
                         </div>
 
                         <div class="card-body">
@@ -61,31 +62,13 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('admin.ati.country-data.update',$countryData) }}" method="POST">
+                            <form action="{{ route('admin.ati.elections.update',$countryData) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="indicator_id">{{ 'Indicator' }} <span
-                                                            style="color:red;">*</span></label>
-                                                        <select class="form-control form-select" id="indicator_id"
-                                                        name="indicator_id">
-                                                            <option value="">None</option>
-                                                            @foreach ($indicators as $indicator)
-                                                            <option value="{{ $indicator->id }}" {{$countryData->indicator_id == $indicator->id ? 'selected':''}}>{{ $indicator->variablename }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    @if($errors->has('indicator_id'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('indicator_id') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="countrycode">{{ 'Country' }} <span
                                                             style="color:red;">*</span></label>
@@ -103,25 +86,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="country_col">{{ 'Country Color' }} <span
-                                                            style="color:red;">*</span></label>
-                                                            <select id="country_col" class="form-control form-select" name="country_col">
-                                                                <option value="">None</option>
-                                                                @foreach($countries_colour as $country_colour)
-                                                                    <option value="{{$country_colour->subcountry_leg_col}}" {{$countryData->country_col == $country_colour->subcountry_leg_col ? 'selected':''}} data-category="{{$country_colour->category}}" style="background-color: {{$country_colour->subcountry_leg_col}}; color: white;">{{$country_colour->subcountry_leg_col}} ({{$country_colour->category}})</option>
-                                                                @endforeach
-                                                            </select>
-                                                    @if($errors->has('country_col'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('country_col') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
                                         </div>
-
                                     </div>
 
                                     <div class="col-4">
@@ -133,7 +98,7 @@
                                                     <select class="form-control form-select" id="year"
                                                     name="year">
                                                         <option value="">None</option>
-                                                        @for ($i=now()->year;$i>=2000;$i--)
+                                                        @for ($i=now()->year;$i<=now()->addYears(5)->year;$i++)
                                                         <option value="{{ $i }}" {{$countryData->year == $i ? 'selected':''}}>{{ $i }}</option>
                                                         @endfor
                                                     </select>
@@ -144,43 +109,16 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="country_score">{{ 'Country Score' }} <span
-                                                            style="color:red;">*</span></label>
-                                                    <input type="text" name="country_score" class="form-control"
-                                                            value="{{ old('country_score',$countryData->country_score) }}" placeholder="Country Score">
-                                                    @if($errors->has('country_score'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('country_score') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="margin-top:20px;">
-                                                <div class="form-group">
-                                                    <label for="country_cat">{{ 'Color Category' }} <span
-                                                            style="color:red;">*</span></label>
-                                                    <input type="text" name="country_cat" id="country_cat" class="form-control"
-                                                            value="{{ old('country_cat',$countryData->country_cat) }}" readonly placeholder="Color Category">
-                                                    <small>Will automatically change value according to country color</small>
-                                                            @if($errors->has('country_cat'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('country_cat') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">
-                                    <a class="btn btn-info" href="{{route('admin.ati.country-data.index')}}">
+                                    <a class="btn btn-info" href="{{route('admin.ati.elections.index')}}">
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">
-                                        <i class="ri-save-line"></i> Save
+                                        <i class="ri-save-line"></i> Update
                                     </button>
                                 </div>
                             </form>

@@ -23,6 +23,10 @@ class Country extends Model
         'company_id'
     ];
 
+    public function scopeFilterATICountry($query){
+        return $query->where('ati',1);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');

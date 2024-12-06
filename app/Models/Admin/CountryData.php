@@ -18,8 +18,21 @@ class CountryData extends Model
         'country_col',
         'country_cat',
         'created_by',
-        'company_id'
+        'company_id',
+        'political_context'
     ];
+
+    public function scopeFilterElectionData($query){
+        return $query->where('political_context',0)->where('company_id',2);
+    }
+
+    public function scopeFilterHistoricalDisruptionData($query){
+        return $query->where('political_context',1)->where('company_id',2);
+    }
+
+    public function scopeFilterIndicatorScore($query){
+        return $query->where('political_context',2)->where('company_id',2);
+    }
 
     public function user()
     {

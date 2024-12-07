@@ -1,5 +1,17 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Country Data Bulk Import')
+@php
+    if($slug == 'elections'){
+        $title = 'Upcoming Election';
+        $homeroute = route('admin.ati.elections.index');
+    }elseif($slug == 'disruptions'){
+        $title = 'Historical Disruption';
+        $homeroute = route('admin.ati.disruptions.index');
+    }elseif($slug == 'indicator-score'){
+        $title = 'Indicator Score';
+        $homeroute = route('admin.ati.indicator-score.index');
+    }
+@endphp
+@section('title',  $title.' Bulk Import')
 @section('content')
 <style>
     .error {
@@ -30,13 +42,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Country Data</h4>
+                        <h4 class="mb-sm-0">{{$title}}</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.ati.country-data.index')}}">Country Data</a></li>
-                                <li class="breadcrumb-item active">{{ 'Import Country Data'}}</li>
+                                <li class="breadcrumb-item">{{ 'Country Data'}}</li>
+                                <li class="breadcrumb-item"><a href="{{$homeroute}}">{{$title}}</a></li>
+                                <li class="breadcrumb-item active">{{ 'Import '.$title}}</li>
                             </ol>
                         </div>
 
@@ -65,12 +78,12 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header border-bottom-dashed">
-							<h5 class="card-title mb-0">Import Country Data</h5>
+							<h5 class="card-title mb-0">Import {{$title}}</h5>
 						</div>
 
 						<div class="card-body">
 						    
-							<form action="{{route('admin.ati.country-data.bulk.insert')}}" method="POST" enctype="multipart/form-data">
+							<form action="{{route('admin.ati.country-data.bulkInsert.submit')}}" method="POST" enctype="multipart/form-data">
 								@csrf
                                 <div class="row">
 									<div class="col-12" style="margin-top:12px;">

@@ -163,8 +163,8 @@ class CountryDataController extends Controller
     }
 
     //Bulk Import
-    public function bulk(){
-        return view('ati.admin.dashboard.country_data.bulk');
+    public function bulk($slug){
+        return view('ati.admin.dashboard.country_data.bulk',compact('slug'));
     }
 
     public function bulkInsert(Request $request){

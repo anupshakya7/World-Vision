@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('country_cat')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('company_id');
+            $table->integer('political_context')->nullable()->comment('null=World Vision
+                                                                    0=Upcoming Elections ATI 
+                                                                    1=Historical Democratic Disruptions ATI');
             $table->timestamps();
 
             $table->foreign('indicator_id')->references('id')->on('indicators')->onDelete('cascade');

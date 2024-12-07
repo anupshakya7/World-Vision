@@ -37,7 +37,7 @@ Route::middleware(['auth', 'check_company'])->group(function () {
     //Country Management
     //Country
     Route::resource('country', CountryController::class);
-
+    
     //Country Data
     Route::prefix('country-data')->group(function () {
         //Upcoming Elections
@@ -48,6 +48,10 @@ Route::middleware(['auth', 'check_company'])->group(function () {
 
         //Indicator Score
         Route::resource('indicator-score', IndicatorScoreController::class);
+        
+        //Bulk Insert Country Data
+        Route::get('import-data/{slug}',[CountryDataController::class,'bulk'])->name('country-data.bulkInsert');
+        Route::post('import-data',[CountryDataController::class,'bulkInsert'])->name('country-data.bulkInsert.submit');
     });
 
     // Route::prefix('country-data')->name('country-data.')->group(function(){

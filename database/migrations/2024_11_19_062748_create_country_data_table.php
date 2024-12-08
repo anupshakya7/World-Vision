@@ -26,7 +26,8 @@ return new class extends Migration
             $table->integer('political_context')->nullable()->comment('null=World Vision
                                                                     0=Upcoming Elections ATI 
                                                                     1=Historical Democratic Disruptions ATI
-                                                                    2=Indicator Score');
+                                                                    2=Indicator Score
+                                                                    3=Voice of People');
             $table->timestamps();
 
             $table->foreign('indicator_id')->references('id')->on('indicators')->onDelete('cascade');

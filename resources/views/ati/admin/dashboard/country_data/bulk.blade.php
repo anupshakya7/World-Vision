@@ -70,7 +70,7 @@
                                     <span id="note">*** Please insert csv file same as sample format for successful entry  *****
                                     </span>
                                 </p>
-                                  <a href="{{asset('sample/country-data-sample.csv')}}" class="btn btn-primary ms-2 my-3" download="">
+                                  <a href="#" class="btn btn-primary ms-2 my-3" id="sample-btn" style="pointer-events:none;color:grey" download="">
                                 <i class="ri-download-line"></i> Download Sample
                             </a>
                                 
@@ -146,21 +146,30 @@
 			['table'], 
 			['tableCellBackgroundColor', 'tableBorderColor']
 			]});
-			//$('#sifaris').trumbowyg();
 
-            //For Color Category
-            $('#country_col').change(function(){
-                var selectedOption = $(this).find('option:selected');
-                var countryCategory = selectedOption.data('category') ?? null;
+            $('#type').change(function(){
+                let type = $('#type').val();
+                let sampleBtn = $('#sample-btn');
 
-                if(countryCategory !== null){
-                    $('#country_cat').val(countryCategory);
+                if(type!==""){
+                    if(type == "election"){
+                        sampleBtn.attr('href','{{asset("sample/ATI/election.csv")}}');
+                    }
+
+                    if(type == "disruption"){
+                        sampleBtn.attr('href','{{asset("sample/ATI/disruption.csv")}}');
+                    }
+
+                    if(type == "indicator-score"){
+                        sampleBtn.attr('href','{{asset("sample/ATI/indicator-score.csv")}}');
+                    }
+
+                    sampleBtn.css({'pointer-events': 'auto','color': '#fff'});
                 }else{
-                    $('#country_cat').val('');
+                    sampleBtn.attr('href','#');
+                    sampleBtn.css({'pointer-events':'none','color':'grey'});
                 }
-                
             });
-            
         });
 
       var _url = "settings";

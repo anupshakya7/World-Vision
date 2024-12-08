@@ -58,17 +58,19 @@ class CountryDataController extends Controller
         ]);
 
         $data_type = $request->type;
+        $custom_data = [auth()->user()->id, auth()->user()->company_id];
         if ($data_type == 'election') {
             $route = 'admin.ati.elections.index';
             $countriesData = CountryData::with(['country', 'user'])->filterElectionData()->paginate(10);
-
-            $custom_data = [auth()->user()->id, auth()->user()->company_id, 0];
+            $custom_data[2] = 0;   
         } elseif ($data_type == 'disruption') {
             $route = 'admin.ati.disruptions.index';
             $countriesData = CountryData::with(['country', 'user'])->filterHistoricalDisruptionData()->paginate(10);
+            $custom_data[2] = 1;
         } elseif ($data_type == 'indicator-score') {
             $route = 'admin.ati.indicator-score.index';
             $countriesData = CountryData::with(['indicator', 'country', 'user'])->filterIndicatorScore()->paginate(10);
+            $custom_data[2] = 2;
         }
         $countriesData = PaginationHelper::addSerialNo($countriesData);
 
@@ -77,7 +79,7 @@ class CountryDataController extends Controller
             $chunks = array_chunk($csv, 500);
             $header = [];
             $batch = Bus::batch([])->dispatch();
-            $custom_header = ['created_by', 'company_id ', 'political_context'];
+            $custom_header = ['created_by', 'company_id', 'political_context'];
 
             foreach ($chunks as $key => $chunk) {
 

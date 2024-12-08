@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ATI\Admin\CountryData;
 
+use App\Helpers\PaginationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\CategoryColor;
 use App\Models\Admin\Country;
@@ -19,6 +20,9 @@ class ElectionController extends Controller
     public function index()
     {
         $countriesData = CountryData::with(['country','user'])->filterElectionData()->paginate(10);
+
+        //Adding Serial No
+        $countriesData = PaginationHelper::addSerialNo($countriesData);
 
         return view('ati.admin.dashboard.country_data.elections.index', compact('countriesData'));
     }

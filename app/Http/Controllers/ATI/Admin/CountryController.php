@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ATI\Admin;
 
+use App\Helpers\PaginationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Country;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::with(['user','parentData'])->paginate(10);
+        $countries = Country::with(['user','parentData'])->where('level',1)->where('ati',1)->paginate(10);
+        $countries = PaginationHelper::addSerialNo($countries);
 
         return view('ati.admin.dashboard.country.index', compact('countries'));
     }
@@ -78,9 +80,14 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        $country = Country::with(['user','parentData'])->find($id);
-
-        return view('ati.admin.dashboard.country.view', compact('country'));
+        $country = Country::with(['user','parentData'])->filterATICountry()->find($id);
+        
+        if($country){
+            return view('ati.admin.dashboard.country.view', compact('country'));
+        }else{
+            return redirect()->back()->with('error','Data Not Found');
+        }
+        
     }
 
     /**
@@ -92,7 +99,13 @@ class CountryController extends Controller
     public function edit(Country $country)
     {
         $regions = Country::select('id', 'country')->where('level', 0)->get();
-        return view('ati.admin.dashboard.country.edit', compact('regions', 'country'));
+        $country = Country::filterATICountry()->find($country->id);
+
+        if($country){
+            return view('ati.admin.dashboard.country.edit', compact('regions', 'country'));
+        }else{
+            return redirect()->back()->with('error','Data Not Found');
+        }
     }
 
     /**

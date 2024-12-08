@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ATI\Admin;
 
+use App\Helpers\PaginationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Indicator;
 use Illuminate\Http\Request;
@@ -17,6 +18,9 @@ class IndicatorController extends Controller
     public function index()
     {
         $indicators = Indicator::select('id','domain','variablename_long','variablename','vardescription','created_by')->with('user')->filterIndicator()->paginate(10);
+
+        //Serial No
+        $indicators = PaginationHelper::addSerialNo($indicators);
 
         return view('ati.admin.dashboard.indicator.index', compact('indicators'));
     }

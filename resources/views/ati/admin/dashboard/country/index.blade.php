@@ -70,7 +70,7 @@
                                     <tbody>
                                         @foreach($countries as $country)
                                         <tr>
-                                            <td>{{$country->id}}</td>
+                                            <td>{{$country->serial_no}}</td>
                                             <td>{{$country->country}}</td>
                                             <td>{{$country->country_code}}</td>
                                             <td>{{optional($country->parentData)->country}}</td>

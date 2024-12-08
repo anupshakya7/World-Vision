@@ -111,9 +111,6 @@
                                     <li class="nav-item">
                                         <a href="{{route('admin.ati.elections.create')}}" class="nav-link">{{ 'Create' }}</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('admin.ati.country-data.bulkInsert','elections')}}" class="nav-link">{{ 'Bulk Import' }}</a>
-                                    </li>
                                 </ul>
                             </div>
 
@@ -129,9 +126,6 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{route('admin.ati.disruptions.create')}}" class="nav-link">{{ 'Create' }}</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('admin.ati.country-data.bulkInsert','disruptions')}}" class="nav-link">{{ 'Bulk Import' }}</a>
                                     </li>
                                 </ul>
                             </div>

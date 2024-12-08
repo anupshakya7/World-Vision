@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ATI\Admin\CountryData;
 
+use App\Helpers\PaginationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Country;
 use App\Models\Admin\CountryData;
@@ -19,6 +20,7 @@ class IndicatorScoreController extends Controller
     public function index()
     {
         $countriesData = CountryData::with(['indicator','country','user'])->filterIndicatorScore()->paginate(10);
+        $countriesData = PaginationHelper::addSerialNo($countriesData);
 
         return view('ati.admin.dashboard.country_data.indicator_score.index', compact('countriesData'));
     }
@@ -87,7 +89,6 @@ class IndicatorScoreController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
         $countryData = CountryData::filterIndicatorScore()->find($id);
         $indicators = Indicator::select('id', 'variablename')->get();
         $countries = Country::select('country','country_code')->where('level',1)->filterATICountry()->orderBy('country','ASC')->get();

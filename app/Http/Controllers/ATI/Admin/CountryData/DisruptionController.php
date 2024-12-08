@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ATI\Admin\CountryData;
 
+use App\Helpers\PaginationHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Country;
 use App\Models\Admin\CountryData;
@@ -18,6 +19,7 @@ class DisruptionController extends Controller
     public function index()
     {
         $countriesData = CountryData::with(['country','user'])->filterHistoricalDisruptionData()->paginate(10);
+        $countriesData = PaginationHelper::addSerialNo($countriesData);
 
         return view('ati.admin.dashboard.country_data.historical_disruptions.index', compact('countriesData'));
     }

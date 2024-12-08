@@ -3,12 +3,15 @@
     if($slug == 'elections'){
         $title = 'Upcoming Election';
         $homeroute = route('admin.ati.elections.index');
+        // $sampledoc = ;
     }elseif($slug == 'disruptions'){
         $title = 'Historical Disruption';
         $homeroute = route('admin.ati.disruptions.index');
+        // $sampledoc =;
     }elseif($slug == 'indicator-score'){
         $title = 'Indicator Score';
         $homeroute = route('admin.ati.indicator-score.index');
+        // $sampledoc =;
     }
 @endphp
 @section('title',  $title.' Bulk Import')
@@ -86,6 +89,21 @@
 							<form action="{{route('admin.ati.country-data.bulkInsert.submit')}}" method="POST" enctype="multipart/form-data">
 								@csrf
                                 <div class="row">
+                                    <div class="col-12">
+                                        <label for="type">Type</label>
+                                        <select class="form-control form-select" id="type"
+                                            name="type">
+                                            <option value="">None</option>
+                                            <option value="election">Upcoming Election</option>
+                                            <option value="disruption">Historical Disruption</option>
+                                            <option value="indicator-score">Indicator Score</option>
+                                        </select>
+                                        @if($errors->has('type'))
+                                        <em class="invalid-feedback">
+                                            {{ $errors->first('type') }}
+                                        </em>
+                                        @endif
+                                    </div>
 									<div class="col-12" style="margin-top:12px;">
 									    <label for="myfile">Select a file: <span
                                             style="color:red;">*</span></label>

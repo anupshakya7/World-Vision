@@ -66,7 +66,7 @@
                                     <tbody>
                                         @foreach($indicators as $indicator)
                                         <tr>
-                                            <td>{{$indicator->id}}</td>
+                                            <td>{{$indicator->serial_no}}</td>
                                             <td>{{$indicator->domain}}</td>
                                             <td>{{$indicator->variablename_long}}</td>
                                             <td>{{$indicator->variablename}}</td>

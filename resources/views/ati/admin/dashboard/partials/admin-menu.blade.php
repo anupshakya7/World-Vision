@@ -170,7 +170,7 @@
                     <a class="nav-link menu-link" href="#sidebarIndicators" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCountry">
                         <i class=" ri-line-chart-line"></i>
-                        <span data-key="t-country">{{ 'Indicators' }}</span>
+                        <span data-key="t-country">{{ 'Domain & Indicators' }}</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarIndicators">
                         <ul class="nav nav-sm flex-column">

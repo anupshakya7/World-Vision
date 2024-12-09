@@ -46,7 +46,7 @@
                                         </tr>
                                         <tr>
                                             <th>Domain</th>
-                                            <td>{{$indicator->domain}}</td>
+                                            <td>{{$indicator->domain_id != null ? $indicator->domains->variablename : $indicator->variablename}}</td>
                                         </tr>
                                         <tr>
                                             <th>Variable Name Long</th>
@@ -59,6 +59,10 @@
                                         <tr>
                                             <th>Variable Description</th>
                                             <td>{{$indicator->vardescription}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Level</th>
+                                            <td>{{$indicator->level == 0 ? 'Domain':'Indicator'}}</td>
                                         </tr>
                                         <tr>
                                             <th>Created By</th>

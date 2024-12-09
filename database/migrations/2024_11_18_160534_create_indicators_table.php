@@ -14,7 +14,8 @@ return new class () extends Migration {
     {
         Schema::create('indicators', function (Blueprint $table) {
             $table->id();
-            $table->string('domain');
+            $table->string('domain')->nullable();
+            $table->integer('domain_id')->nullable();
             $table->string('variablename_long');
             $table->string('variablename');
             $table->text('vardescription')->nullable();
@@ -27,6 +28,8 @@ return new class () extends Migration {
             $table->string('subnational')->nullable();
             $table->string('national')->nullable();
             $table->string('imputation')->nullable();
+            $table->integer('level')->nullable()->comment('0=Domain
+                                                            1=Indicator');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('company_id');
             $table->timestamps();

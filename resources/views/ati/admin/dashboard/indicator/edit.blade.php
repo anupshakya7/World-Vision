@@ -69,18 +69,19 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="title">{{ 'Domain' }} <span
-                                                            style="color:red;">*</span></label>
-                                                    <input type="text" name="domain" class="form-control"
-                                                        value="{{ old('domain',$indicator->domain) }}"
-                                                        placeholder="Domain">
-                                                    @if($errors->has('domain'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('domain') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
+                                                <label for="parent_id">Domain</label>
+                                                <select class="form-control form-select" id="domain_id"
+                                                    name="domain_id">
+                                                    <option value="">None</option>
+                                                    @foreach ($domains as $domain)
+                                                    <option value="{{ $domain->id }}" {{$indicator->domain_id == $domain->id ? 'selected':''}}>{{ $domain->variablename }}</option>
+                                                    @endforeach
+                                                </select>
+                                            @if($errors->has('domain_id'))
+                                            <em class="invalid-feedback">
+                                                {{ $errors->first('domain_id') }}
+                                            </em>
+                                            @endif
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">

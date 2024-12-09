@@ -1,5 +1,5 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Indicator')
+@section('title','Domain & Indicator')
 @section('content')
 <style>
     button {
@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">{{"Indicator"}}</h4>
+                        <h4 class="mb-sm-0">{{"Domain & Indicator"}}</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
-                                <li class="breadcrumb-item active">{{"Indicator"}}</li>
+                                <li class="breadcrumb-item active">{{"Domain & Indicator"}}</li>
                             </ol>
                         </div>
 
@@ -34,14 +34,14 @@
                             <div class="row g-4 align-items-center">
                                 <div class="col-sm">
                                     <div>
-                                        <h5 class="card-title mb-0">Indicator</h5>
+                                        <h5 class="card-title mb-0">Domain & Indicator</h5>
                                     </div>
                                 </div>
                                 <div class="col-sm-auto">
                                     <div class="d-flex flex-wrap align-items-start gap-2">
                                         <a class="btn btn-soft-success" href="{{ route('admin.ati.indicator.create') }}">
                                             <i class="ri-add-circle-line align-middle me-1"></i> {{ "Add"
-                                            }} {{ "Indicator" }}
+                                            }} {{ "Domain & Indicator" }}
                                         </a>
                                     </div>
                                 </div>
@@ -59,18 +59,21 @@
                                             <th>{{'Variable Name Long'}}</th>
                                             <th>{{'Variable Name'}}</th>
                                             <th>{{'Variable Description'}}</th>
+                                            <th>{{'Level'}}</th>
                                             <th>{{'Created By'}}</th>
                                             <th>{{'Action'}}</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
                                         @foreach($indicators as $indicator)
                                         <tr>
                                             <td>{{$indicator->serial_no}}</td>
-                                            <td>{{$indicator->domain}}</td>
+                                            <td>{{$indicator->domain_id != null ? $indicator->domains->variablename : $indicator->variablename}}</td>
                                             <td>{{$indicator->variablename_long}}</td>
                                             <td>{{$indicator->variablename}}</td>
                                             <td>{{Str::limit($indicator->vardescription,50)}}</td>
+                                            <td>{{$indicator->level == 0 ? 'Domain':'Indicator'}}</td>
                                             <td>{{$indicator->user->name }}</td>
                                             <td>
                                                 <a href="{{route('admin.ati.indicator.show',$indicator)}}"><i

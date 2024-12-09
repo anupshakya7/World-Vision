@@ -32,7 +32,7 @@ class IndicatorScoreController extends Controller
      */
     public function create()
     {
-        $indicators = Indicator::select('id', 'variablename')->filterIndicator()->get();
+        $indicators = Indicator::select('id', 'variablename')->where('level',1)->filterIndicator()->get();
         $countries = Country::select('country','country_code')->where('level',1)->filterATICountry()->orderBy('country','ASC')->get();
 
         return view('ati.admin.dashboard.country_data.indicator_score.create', compact('indicators','countries'));
@@ -90,7 +90,7 @@ class IndicatorScoreController extends Controller
     public function edit($id)
     {
         $countryData = CountryData::filterIndicatorScore()->find($id);
-        $indicators = Indicator::select('id', 'variablename')->get();
+        $indicators = Indicator::select('id', 'variablename')->where('level',1)->filterIndicator()->get();
         $countries = Country::select('country','country_code')->where('level',1)->filterATICountry()->orderBy('country','ASC')->get();
         
         if($countryData){

@@ -12,6 +12,7 @@ class Indicator extends Model
 
     protected $fillable = [
         'domain',
+        'domain_id',
         'variablename_long',
         'variablename',
         'vardescription',
@@ -24,6 +25,7 @@ class Indicator extends Model
         'subnational',
         'national',
         'imputation',
+        'level',
         'created_by',
         'company_id'
     ];
@@ -35,6 +37,10 @@ class Indicator extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function domains(){
+        return $this->belongsTo(Indicator::class,'domain_id');
     }
 
     public function source()

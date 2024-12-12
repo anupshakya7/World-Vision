@@ -1,5 +1,5 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Indicator Score Create')
+@section('title','Domain Score Create')
 @section('content')
 <style>
     .error {
@@ -30,14 +30,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Indicator Score</h4>
+                        <h4 class="mb-sm-0">Domain Score</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
                                 <li class="breadcrumb-item">{{ 'Country Data'}}</li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.ati.indicator-score.index')}}">Indicator Score</a></li>
-                                <li class="breadcrumb-item active">{{ 'Create Indicator Score'}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.ati.domain-score.index')}}">Domain Score</a></li>
+                                <li class="breadcrumb-item active">{{ 'Create Domain Score'}}</li>
                             </ol>
                         </div>
 
@@ -49,7 +49,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{ 'Add Indicator Score' }}</h5>
+                            <h5 class="card-title mb-0">{{ 'Add Domain Score' }}</h5>
                         </div>
 
                         <div class="card-body">
@@ -62,25 +62,25 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('admin.ati.indicator-score.store') }}" method="POST">
+                            <form action="{{ route('admin.ati.domain-score.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="indicator_id">{{ 'Indicator' }} <span
+                                                    <label for="domain_id">{{ 'Domain' }} <span
                                                             style="color:red;">*</span></label>
-                                                        <select class="form-control form-select" id="indicator_id"
-                                                        name="indicator_id">
+                                                        <select class="form-control form-select" id="domain_id"
+                                                        name="domain_id">
                                                             <option value="">None</option>
                                                             @foreach ($indicators as $indicator)
                                                             <option value="{{ $indicator->id }}">{{ $indicator->variablename }}</option>
                                                             @endforeach
                                                         </select>
-                                                    @if($errors->has('indicator_id'))
+                                                    @if($errors->has('domain_id'))
                                                     <em class="invalid-feedback">
-                                                        {{ $errors->first('indicator_id') }}
+                                                        {{ $errors->first('domain_id') }}
                                                     </em>
                                                     @endif
                                                 </div>
@@ -99,6 +99,32 @@
                                                     @if($errors->has('countrycode'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('countrycode') }}
+                                                    </em>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-12" style="margin-top:20px;">
+                                                <div class="form-group">
+                                                    <label for="domain_result">{{ 'Domain Result' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <input type="text" name="domain_result" class="form-control"
+                                                            value="{{ old('domain_result') }}" placeholder="Domain Result">
+                                                    @if($errors->has('domain_result'))
+                                                    <em class="invalid-feedback">
+                                                        {{ $errors->first('domain_result') }}
+                                                    </em>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-12" style="margin-top:20px;">
+                                                <div class="form-group">
+                                                    <label for="trend_result">{{ 'Trend Result' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <input type="text" name="trend_result" class="form-control"
+                                                            value="{{ old('trend_result') }}" placeholder="Trend Result">
+                                                    @if($errors->has('trend_result'))
+                                                    <em class="invalid-feedback">
+                                                        {{ $errors->first('trend_result') }}
                                                     </em>
                                                     @endif
                                                 </div>
@@ -129,13 +155,40 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="country_score">{{ 'Indicator Score' }} <span
+                                                    <label for="score">{{ 'Score' }} <span
                                                             style="color:red;">*</span></label>
-                                                    <input type="text" name="country_score" class="form-control"
-                                                            value="{{ old('country_score') }}" placeholder="Country Score">
-                                                    @if($errors->has('country_score'))
+                                                    <input type="text" name="score" class="form-control"
+                                                            value="{{ old('score') }}" placeholder="Country Score">
+                                                    @if($errors->has('score'))
                                                     <em class="invalid-feedback">
-                                                        {{ $errors->first('country_score') }}
+                                                        {{ $errors->first('score') }}
+                                                    </em>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-12" style="margin-top:20px;">
+                                                <div class="form-group">
+                                                    <label for="trend_percentage">{{ 'Domain Trend (%)' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <input type="text" name="trend_percentage" class="form-control"
+                                                            value="{{ old('trend_percentage') }}" placeholder="Domain Trend (%)">
+                                                    @if($errors->has('trend_percentage'))
+                                                    <em class="invalid-feedback">
+                                                        {{ $errors->first('trend_percentage') }}
+                                                    </em>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-12" style="margin-top:20px;">
+                                                <div class="form-group">
+                                                    <label for="shifts_governance">{{ 'Shifts in Governance' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <input type="text" name="shifts_governance" class="form-control"
+                                                            value="{{ old('shifts_governance') }}" placeholder="Shifts in Governance">
+                                                    @if($errors->has('shifts_governance'))
+                                                    <em class="invalid-feedback">
+                                                        {{ $errors->first('shifts_governance') }}
                                                     </em>
                                                     @endif
                                                 </div>
@@ -145,7 +198,7 @@
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">
-                                    <a class="btn btn-info" href="{{route('admin.ati.indicator-score.index')}}">
+                                    <a class="btn btn-info" href="{{route('admin.ati.domain-score.index')}}">
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">

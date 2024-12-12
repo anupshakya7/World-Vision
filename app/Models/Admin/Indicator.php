@@ -43,6 +43,10 @@ class Indicator extends Model
         return $this->belongsTo(Indicator::class,'domain_id');
     }
 
+    public function domainData(){
+        return $this->hasMany(CountryDomainData::class,'domain_id');
+    }
+
     public function source()
     {
         return $this->hasMany(Source::class, 'indicator_id');

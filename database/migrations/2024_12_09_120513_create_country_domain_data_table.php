@@ -18,11 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('domain_id');
             $table->string('countrycode');
             $table->integer('year');
-            $table->double('country_score');
+            $table->double('score');
             $table->string('domain_result');
             $table->string('trend_result');
             $table->decimal('trend_percentage',5,2);
-            $table->string('domain_result');
             $table->string('shifts_governance');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('company_id');

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double('country_score')->nullable();
             $table->string('country_col')->nullable();
             $table->string('country_cat')->nullable();
+            $table->longText('remarks')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('company_id');
             $table->integer('political_context')->nullable()->comment('null=World Vision

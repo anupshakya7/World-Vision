@@ -1,5 +1,5 @@
 @extends('ati.admin.dashboard.layout.web')
-@section('title','Indicator Score Create')
+@section('title','Voice Of People Update')
 @section('content')
 <style>
     .error {
@@ -30,14 +30,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Indicator Score</h4>
+                        <h4 class="mb-sm-0">Voice Of People</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{route('admin.ati.home')}}">ATI</a></li>
-                                <li class="breadcrumb-item">{{ 'Country Data'}}</li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.ati.indicator-score.index')}}">Indicator Score</a></li>
-                                <li class="breadcrumb-item active">{{ 'Create Indicator Score'}}</li>
+                                <li class="breadcrumb-item active">{{ 'Country Data'}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.ati.voice-people.index')}}">Voice Of People</a></li>
+                                <li class="breadcrumb-item active">{{ 'Update Voice Of People'}}</li>
                             </ol>
                         </div>
 
@@ -49,7 +49,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header border-bottom-dashed">
-                            <h5 class="card-title mb-0">{{ 'Add Indicator Score' }}</h5>
+                            <h5 class="card-title mb-0">{{ 'Update Voice Of People' }}</h5>
                         </div>
 
                         <div class="card-body">
@@ -62,30 +62,13 @@
                                 </ul>
                             </div>
                             @endif
-                            <form action="{{ route('admin.ati.indicator-score.store') }}" method="POST">
+                            <form action="{{ route('admin.ati.voice-people.update',$countryData) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="indicator_id">{{ 'Indicator' }} <span
-                                                            style="color:red;">*</span></label>
-                                                        <select class="form-control form-select" id="indicator_id"
-                                                        name="indicator_id">
-                                                            <option value="">None</option>
-                                                            @foreach ($indicators as $indicator)
-                                                            <option value="{{ $indicator->id }}">{{ $indicator->variablename }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    @if($errors->has('indicator_id'))
-                                                    <em class="invalid-feedback">
-                                                        {{ $errors->first('indicator_id') }}
-                                                    </em>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
                                                     <label for="countrycode">{{ 'Country' }} <span
                                                             style="color:red;">*</span></label>
@@ -93,12 +76,30 @@
                                                         name="countrycode">
                                                             <option value="">None</option>
                                                             @foreach ($countries as $country)
-                                                            <option value="{{ $country->country_code }}">{{ $country->country }}</option>
+                                                            <option value="{{ $country->country_code }}" {{$countryData->countrycode == $country->country_code ? 'selected':''}}>{{ $country->country }}</option>
                                                             @endforeach
                                                         </select>
                                                     @if($errors->has('countrycode'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('countrycode') }}
+                                                    </em>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-12" style="margin-top:20px;">
+                                                <div class="form-group">
+                                                    <label for="remarks">{{ 'Voice Of People' }} <span
+                                                            style="color:red;">*</span></label>
+                                                    <select class="form-control form-select" id="remarks"
+                                                    name="remarks">
+                                                        <option value="">None</option>
+                                                        <option value="The Judicial System" {{$countryData->remarks == "The Judicial System" ? 'selected':''}}>The Judicial System</option>
+                                                        <option value="Politics" {{$countryData->remarks == "Politics" ? 'selected':''}}>Politics</option>
+                                                        <option value="Elections" {{$countryData->remarks == "Elections" ? 'selected':''}}>Elections</option>
+                                                    </select>
+                                                    @if($errors->has('remarks'))
+                                                    <em class="invalid-feedback">
+                                                        {{ $errors->first('remarks') }}
                                                     </em>
                                                     @endif
                                                 </div>
@@ -117,7 +118,7 @@
                                                     name="year">
                                                         <option value="">None</option>
                                                         @for ($i=now()->year;$i>=2000;$i--)
-                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                        <option value="{{ $i }}" {{$countryData->year == $i ? 'selected':''}}>{{ $i }}</option>
                                                         @endfor
                                                     </select>
                                                     @if($errors->has('year'))
@@ -129,10 +130,10 @@
                                             </div>
                                             <div class="col-12" style="margin-top:20px;">
                                                 <div class="form-group">
-                                                    <label for="country_score">{{ 'Indicator Score' }} <span
+                                                    <label for="country_score">{{ 'Score (%)' }} <span
                                                             style="color:red;">*</span></label>
                                                     <input type="text" name="country_score" class="form-control"
-                                                            value="{{ old('country_score') }}" placeholder="Country Score">
+                                                            value="{{ old('country_score',$countryData->country_score) }}" maxlength="3" placeholder="Country Score">
                                                     @if($errors->has('country_score'))
                                                     <em class="invalid-feedback">
                                                         {{ $errors->first('country_score') }}
@@ -145,11 +146,11 @@
                                 </div>
 
                                 <div class="col-12" style="margin-top:30px;">
-                                    <a class="btn btn-info" href="{{route('admin.ati.indicator-score.index')}}">
+                                    <a class="btn btn-info" href="{{route('admin.ati.voice-people.index')}}">
                                         <i class="ri-arrow-left-line"></i> Back to list
                                     </a>
                                     <button class="btn btn-success float-end" type="submit" id="uploadButton">
-                                        <i class="ri-save-line"></i> Save
+                                        <i class="ri-save-line"></i> Update
                                     </button>
                                 </div>
                             </form>
@@ -184,17 +185,49 @@
 			]});
 			//$('#sifaris').trumbowyg();
 
-            //For Color Category
-            $('#country_col').change(function(){
-                var selectedOption = $(this).find('option:selected');
-                var countryCategory = selectedOption.data('category') ?? null;
+            $('#countrycode,#year').change(function(){
+                let country = $('#countrycode').val(); 
+                let year = $('#year').val(); 
 
-                if(countryCategory !== null){
-                    $('#country_cat').val(countryCategory);
+                if(country && year){
+                    $.ajax({
+                        url:"{{route('check.voice.people')}}",
+                        type:'GET',
+                        data:{
+                            countrycode:country,
+                            year:year
+                        },
+                        success:function(response){
+                            var data = response.data;
+                            voiceOfPeopleDropdown(data);
+                        }
+                    })
                 }else{
-                    $('#country_cat').val('');
+                    $('#remarks').html('');
+                    $('#remarks').append(`
+                                        <option value="">None</option>
+                                        <option value="The Judicial System">The Judicial System</option>
+                                        <option value="Politics">Politics</option>
+                                        <option value="Elections">Elections</option>`);
                 }
-                
+
+                function voiceOfPeopleDropdown(data){
+                    $('#remarks').html('');
+                    $('#remarks').html('<option value="">None</option>');
+                    $('#remarks').append(`<option value="{{$countryData->remarks}}">{{$countryData->remarks}}</option>`);
+                    $.each(data,function(key,value){
+                        if(value===0){
+                            if(key !== "{{$countryData->remarks}}"){
+                                $('#remarks').append(`<option value="${key}">${key}</option>`);
+                            }
+                        }
+                    });
+
+                    var count = $('#remarks option').length - 1;
+                    if(count === 0){
+                        $('#remarks').append(`<option value="{{$countryData->remarks}}">{{$countryData->remarks}}</option>`);
+                    }
+                }
             });
             
         });

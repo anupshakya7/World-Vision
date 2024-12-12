@@ -97,6 +97,7 @@
                                             <option value="election">Upcoming Election</option>
                                             <option value="disruption">Historical Disruption</option>
                                             <option value="indicator-score">Indicator Score</option>
+                                            <option value="voice-people">Voice Of People</option>
                                         </select>
                                         @if($errors->has('type'))
                                         <em class="invalid-feedback">
@@ -162,6 +163,10 @@
 
                     if(type == "indicator-score"){
                         sampleBtn.attr('href','{{asset("sample/ATI/indicator-score.csv")}}');
+                    }
+
+                    if(type == "voice-people"){
+                        sampleBtn.attr('href','{{asset("sample/ATI/voice-people.csv")}}');
                     }
 
                     sampleBtn.css({'pointer-events': 'auto','color': '#fff'});

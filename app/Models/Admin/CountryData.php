@@ -17,6 +17,7 @@ class CountryData extends Model
         'country_score',
         'country_col',
         'country_cat',
+        'remarks',
         'created_by',
         'company_id',
         'political_context'
@@ -32,6 +33,10 @@ class CountryData extends Model
 
     public function scopeFilterIndicatorScore($query){
         return $query->where('political_context',2)->where('company_id',2);
+    }
+
+    public function scopeFilterVoiceOfPeople($query){
+        return $query->where('political_context',3)->where('company_id',2);
     }
 
     public function user()

@@ -130,6 +130,22 @@
                                 </ul>
                             </div>
 
+                            {{-- Domain Score --}}
+                            <a class="nav-link menu-link" href="#sidebarCountryDataDomain" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountryDataDomain">
+                            <span data-key="t-country">{{ 'Domain Score' }}</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarCountryDataDomain">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.domain-score.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.domain-score.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
                             {{-- Indicator Score --}}
                             <a class="nav-link menu-link" href="#sidebarCountryDataIndicator" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarCountryDataIndicator">
@@ -143,6 +159,32 @@
                                     <li class="nav-item">
                                         <a href="{{route('admin.ati.indicator-score.create')}}" class="nav-link">{{ 'Create' }}</a>
                                     </li>
+                                </ul>
+                            </div>
+
+                            {{-- Voice Of People --}}
+                            <a class="nav-link menu-link" href="#sidebarCountryDataVoice" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountryDataVoice">
+                            <span data-key="t-country">{{ 'Voice Of People' }}</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarCountryDataVoice">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.voice-people.index')}}" class="nav-link">{{ 'List' }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('admin.ati.voice-people.create')}}" class="nav-link">{{ 'Create' }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {{-- Bulk Import --}}
+                            <a class="nav-link menu-link" href="#sidebarCountryDataBulkImport" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCountryDataBulkImport">
+                            <span data-key="t-country">{{ 'Bulk Import' }}</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarCountryDataBulkImport">
+                                <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
                                         <a href="{{route('admin.ati.country-data.bulkInsert','indicator-score')}}" class="nav-link">{{ 'Bulk Import' }}</a>
                                     </li>

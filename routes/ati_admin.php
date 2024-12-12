@@ -4,8 +4,10 @@ use App\Http\Controllers\ATI\Admin\Authorize\PermissionController;
 use App\Http\Controllers\ATI\Admin\Authorize\RoleController;
 use App\Http\Controllers\ATI\Admin\CountryController;
 use App\Http\Controllers\ATI\Admin\CountryData\DisruptionController;
+use App\Http\Controllers\ATI\Admin\CountryData\DomainScoreController;
 use App\Http\Controllers\ATI\Admin\CountryData\ElectionController;
 use App\Http\Controllers\ATI\Admin\CountryData\IndicatorScoreController;
+use App\Http\Controllers\ATI\Admin\CountryData\VoiceOfPeopleController;
 use App\Http\Controllers\ATI\Admin\CountryDataController;
 use App\Http\Controllers\ATI\Admin\IndexController;
 use App\Http\Controllers\ATI\Admin\IndicatorController;
@@ -46,13 +48,21 @@ Route::middleware(['auth', 'check_company'])->group(function () {
         //Historical Disruptions
         Route::resource('disruptions', DisruptionController::class);
 
+        //Domain Score
+        Route::resource('domain-score', DomainScoreController::class);
+
         //Indicator Score
         Route::resource('indicator-score', IndicatorScoreController::class);
+        
+        //Voice Of People
+        Route::resource('voice-people', VoiceOfPeopleController::class);
         
         //Bulk Insert Country Data
         Route::get('import-data/{slug}',[CountryDataController::class,'bulk'])->name('country-data.bulkInsert');
         Route::post('import-data',[CountryDataController::class,'bulkInsert'])->name('country-data.bulkInsert.submit');
     });
+
+
 
     // Route::prefix('country-data')->name('country-data.')->group(function(){
     //     //Export
@@ -65,4 +75,5 @@ Route::middleware(['auth', 'check_company'])->group(function () {
 
     //Indicator
     Route::resource('indicator', IndicatorController::class);
+    
 });

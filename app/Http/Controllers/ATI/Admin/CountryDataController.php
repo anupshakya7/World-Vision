@@ -71,6 +71,10 @@ class CountryDataController extends Controller
             $route = 'admin.ati.indicator-score.index';
             $countriesData = CountryData::with(['indicator', 'country', 'user'])->filterIndicatorScore()->paginate(10);
             $custom_data[2] = 2;
+        }elseif ($data_type == 'voice-people') {
+            $route = 'admin.ati.voice-people.index';
+            $countriesData = CountryData::with(['indicator', 'country', 'user'])->filterIndicatorScore()->paginate(10);
+            $custom_data[2] = 3;
         }
         $countriesData = PaginationHelper::addSerialNo($countriesData);
 

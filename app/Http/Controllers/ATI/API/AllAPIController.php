@@ -195,6 +195,8 @@ class AllAPIController extends Controller
 
         $indicator = Indicator::query();
         $domainData = CountryDomainData::query();
+        $year = $request->year;
+        $domainResult =[];
 
         if($request->filled('countrycode')){
             $domainData->where('countrycode',$request->countrycode);
@@ -204,7 +206,6 @@ class AllAPIController extends Controller
             $domains = $indicator->where('level',0)->where('company_id',2)->get();
 
             $domain10YearResult = [];
-            $domainResult =[];
 
             foreach($domains as $domain){
                 for($i=(Carbon::now()->year-10);$i<=Carbon::now()->year;$i++){
@@ -227,28 +228,99 @@ class AllAPIController extends Controller
 
                 $domainResult[$domain->variablename]=$domain10YearResult;
             }
+        }elseif($type == 'governance'){
+            $countries = Country::select(['country','country_code'])->where('ati',1)->get();
+            $domains = Indicator::select('id','variablename')->where('level',0)->where('company_id',2)->whereNot('variablename','Overall Score')->get();
+            $domainScore = CountryDomainData::query();
+
+            foreach($countries as $country){
+                $domainEachScore =[];
+                $ati_governance_score = 0;
+                $ati_governance_count = 0;
+
+                foreach($domains as $domain){
+                    if(($domain->variablename == 'Rule by the People') || ($domain->variablename == 'Rule of Law')){
+                        $domainQuery = clone $domainScore;
+                        $ati_governance_score += $domainQuery->where('domain_id',$domain->id)->where('countrycode',$country->country_code)->where('year',$year)->sum('score');
+                        $ati_governance_count += $domainQuery->where('domain_id',$domain->id)->where('countrycode',$country->country_code)->where('year',$year)->count();
+                        $ati_governance_count = $ati_governance_count ? $ati_governance_count:1;
+                    }else{
+                        $domainQuery = clone $domainScore;
+                        $domainEnablingScore = $domainQuery->where('domain_id',$domain->id)->where('countrycode',$country->country_code)->where('year',$year)->pluck('score')->first();
+                        $domainEnablingScore = $domainEnablingScore ? $domainEnablingScore : 0;
+                        $domainEachScore[$domain->variablename] = $domainEnablingScore;
+                    }
+                    $domainEachScore['ATI Governance'] = ($ati_governance_score/$ati_governance_count);
+                }
+
+                $domainResult[$country->country_code] = $domainEachScore;
+            }
         }
-        // elseif($type == 'governance'){
-        //     $countries = Country::select(['country','country_code'])->where('ati',1)->get();
-        //     $domain = Indicator::where('level',0)->where('company_id',2)->whereNot('variablename','Overall Score')->get();
 
-        //     return $domain;
-        //     foreach($countries as $country){
-        //         $domains = $indicator->where('level',0)->where('company_id',2)->whereNot('variablename','Overall Score')->get();
-        //         foreach($domains as $domain){
-        //             if(($domain->variablename == 'Rule by the People') || ($domain->variablename == 'Rule of Law')){
-                        
-        //             }
-        //         }
-        //     }
-        // }
+        if(count($domainResult)>0){
+            return response()->json([
+                'success'=>true,
+                'data'=>$domainResult
+            ]);
+        }else{
+            return response()->json([
+                'success'=>false,
+                'message'=>'Data Not Found'
+            ]);
+        }
+    }
 
-        
-
-        return response()->json([
-            'success'=>true,
-            'data'=>$domainResult
+    //Risk Outlook
+    public function riskOutlookAPI(Request $request){
+        $validator = Validator::make($request->all(),[
+            'countrycode' => 'required|string|max:3',
+            'year'=>'required'
         ]);
 
+        if($validator->fails()){
+            return response()->json($validator->errors(),404);
+        }
+        // $indicatorResult = [];
+        // $indicatorTrendResult10Year =[];
+        // $indicators = Indicator::select('id','variablename')->where('level',1)->where('company_id',2)->get();
+        // $countryData = CountryData::query();
+        // $countryData->where('political_context',2);
+
+        // foreach($indicators as $indicator){
+        //     for($i=(Carbon::now()->year-10);$i<=Carbon::now()->year;$i++){
+        //         $countryQuery = clone $countryData;
+        //         $score= $countryQuery->where('indicator_id',$indicator->id)->where('countrycode',$request->countrycode)->where('year',$i)->pluck('country_score')->first();
+        //         $indicatorTrendResult10Year[$i] = $score ? $score:0;
+        //     }
+        //     $indicatorData = $countryData->select('id','countrycode','year','country_score as score')->where('indicator_id',$indicator->id)->where('countrycode',$request->countrycode)->first();
+        //     // if($indicatorData){
+        //     //     $indicatorResult[] = [
+        //     //         'id'=>$indicatorData->id,
+        //     //         'title'=>$indicator->variablename,
+        //     //         'countrycode'=>$indicatorData->countrycode,
+        //     //         'year'=>$indicatorData->year,
+        //     //         'score'=>$indicatorData->score,
+        //     //         'trend10year'=>$indicatorTrendResult10Year
+        //     //     ];
+        //     // }
+        //     $indicatorResult[$indicator->variablename] = [$indicatorData,$indicatorTrendResult10Year];
+           
+        // }
+        // return $indicatorResult;
+        $year = $request->year;
+
+        $indicators = Indicator::select('indicators.id','indicators.variablename','country_data.countrycode','country_data.year','country_data.country_score')->leftJoin('country_data','indicators.id','=','country_data.indicator_id')->where('indicators.level',1)->where('indicators.company_id',2)->where('countrycode',$request->countrycode)->where('country_data.year',$year)->distinct()->get();
+        
+        if($indicators){
+            return response()->json([
+                'success'=>true,
+                'data'=>$indicators
+            ]);
+        }else{
+            return response()->json([
+                'success'=>false,
+                'message'=>'Data Not Found'
+            ]);
+        }
     }
 }

@@ -36,3 +36,6 @@ Route::get('radar-trend-chart',[AllAPIController::class,'radarTrendChartDomainIn
 
 //Domain Score and Governance Vs Enabling Graph
 Route::get('domain-governance-compare',[AllAPIController::class,'domainGovernanceCompare']);
+
+//Risk Outlook
+Route::get('risk-outlook',[AllAPIController::class,'riskOutlookAPI']);

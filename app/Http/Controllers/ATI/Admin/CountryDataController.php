@@ -97,10 +97,14 @@ class CountryDataController extends Controller
 
                 // Add custom data to each row in $data
                 foreach ($data as &$row) {
+                    if($data_type == 'election'){
+                        if($row[1]==="" ){
+                            $row[1]=null;
+                        }
+                    }
                     // Append custom data values as indexed values
                     $row = array_merge($row, $custom_data);
                 }
-
                 $batch->add(new CountryCSVData($header, $data));
             }
         }

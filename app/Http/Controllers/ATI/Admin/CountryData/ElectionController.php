@@ -51,7 +51,7 @@ class ElectionController extends Controller
     {
         $validatedData = $request->validate([
             'countrycode' => 'required|string|max:5|exists:countries,country_code',
-            'year' => 'required|integer|between:2000,2100'
+            'year' => 'nullable|integer|between:2000,2100'
         ]);
 
         //Adding Created By User Id
